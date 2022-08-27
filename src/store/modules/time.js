@@ -57,12 +57,12 @@ export const time ={
               context.commit('store', response.data.data);
           },
           async update(context,edittime) {
-            console.log(edittime);
-
+            //console.log(edittime);
             axios.defaults.headers.common['Authorization'] = 'Bearer ' + localStorage.getItem('access_token')
-            const response = await axios.put('/Time'+edittime.id, edittime);
-            console.log(response.data.data);
+            const response = await axios.put('/Time/'+edittime.id, edittime);
+            //console.log(response.data.data);
             context.commit('update', response.data.data);
+
           },
           async edit( context, timeid) {
               axios.defaults.headers.common['Authorization'] = 'Bearer ' + localStorage.getItem('access_token')

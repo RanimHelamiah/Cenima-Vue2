@@ -19,7 +19,6 @@
                         </thead>
                         <tbody class="text-purple-900 dark:text-gray-200 text-md font-light" 
                           :key="time.id" v-for="time in alltimes" >
-                          <!-- // v-for="(post, index) in posts" :key="index"> -->
                             <tr class="border-b border-gray-200 hover:bg-purple-500">
                                 <td class="py-3 px-6 text-left whitespace-nowrap">
                                     <div class="flex items-center">
