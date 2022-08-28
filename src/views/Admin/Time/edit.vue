@@ -50,21 +50,13 @@ export default {
     methods:{
         ...mapActions('time',['update','edit']),
         timeupdate(edittime) {
-        this.update(edittime);
+          this.update(edittime);
+        }, 
         
-      //  this.$router.push({ name: 'indextime' })
-        
-        
-
-      },
-     
     }, 
     created() {
         this.edit(this.timeid)
-
-
-     },
-    
+   },
     computed:mapGetters('time', {edittime: "edittime"}),   
 }
 

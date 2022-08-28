@@ -11,6 +11,7 @@ import timeedit from "../views/Admin/Time/edit.vue";
 import hallindex from "../views/Admin/Hall/index-hall.vue"
 import movieindex from "../views/Admin/Movie/index.vue";
 import createmovie from "../views/Admin/Movie/create-movie.vue";
+import editmovie from "../views/Admin/Movie/edit-movie.vue";
 import rolemanager from "../views/Admin/RolePer/rolemanager.vue";
 // Component Pages
 import Valert from "../views/components/alert.vue";
@@ -86,6 +87,16 @@ const routes = [
     component: createmovie,
     meta: { 
       title: "createmovie " + appname,
+      requiresAuth: true,
+    },
+  },
+  {
+    path: "/Movie/edit/:movieid",
+    name: "editmovie",
+    component: editmovie,
+    props: true,
+    meta: { 
+      title: "editmovie " + appname,
       requiresAuth: true,
     },
   },
