@@ -1,9 +1,8 @@
 <template>
   <AdminLayout>
     <div class="overflow-x-auto ">
-        <div v-if="successMessage" class="success-message text-purple-900 darek:text-gray-100">{{ successMessage }}</div>
-
-        <div class="flex justify-end bg-gray-100 dark:bg-purple-900 m-4 lg:flex  md:flex ">
+       <div v-if="successMessage" class="success-message text-purple-900 darek:text-gray-100">{{ successMessage }}</div>
+       <div class="flex justify-end bg-gray-100 dark:bg-purple-900 m-4 lg:flex  md:flex ">
             <router-link to="/Movie/create">
                 <button name="new"  class="bg-purple-200 dark:bg-violet-900 m-4 mr-8 text-3xl text-purple-900 dark:text-purple-200  
                   font-semibold p-3 border-2 border-purple-900 dark:border-purple-200 rounded-lg 
@@ -119,9 +118,12 @@
    },
     created() {
         this.index()
+       // this.indexprice()
     },
     
-    computed:mapGetters('movie', {allmovies: "allmovies"}),
+    computed:mapGetters('movie', {
+        allmovies: "allmovies",
+        }),
    
     
 }

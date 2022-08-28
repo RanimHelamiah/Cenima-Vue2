@@ -13,6 +13,7 @@ import movieindex from "../views/Admin/Movie/index.vue";
 import createmovie from "../views/Admin/Movie/create-movie.vue";
 import editmovie from "../views/Admin/Movie/edit-movie.vue";
 import rolemanager from "../views/Admin/RolePer/rolemanager.vue";
+import price from "../views/Admin/Price/index-price.vue";
 // Component Pages
 import Valert from "../views/components/alert.vue";
 import Vaccrodion from "../views/components/accordion.vue";
@@ -106,6 +107,15 @@ const routes = [
     component: rolemanager,
     meta: { 
       title: "rolemanager " + appname,
+      requiresAuth: true,
+    },
+  },
+  {
+    path: "/Price/index",
+    name: "price",
+    component: price,
+    meta: { 
+      title: "price " + appname,
       requiresAuth: true,
     },
   },
