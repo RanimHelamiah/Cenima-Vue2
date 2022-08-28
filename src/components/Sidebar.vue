@@ -42,7 +42,7 @@
             exact
             class="w-full flex text-left rounded-md box-border p-3 hover:bg-purple-100 dark:hover:bg-violet-500"
           >
-            <span class="mr-3 text-xl"><Icon icon="bxs:dashboard" /></span>
+            <span class="mr-3 text-xl"><Icon class="mt-2" icon="bxs:dashboard" /></span>
             <span class="w-full text-purple-200"> Dashboard </span>
           </router-link>
         </div>
@@ -51,7 +51,7 @@
             <button
               class="text-purple-800 dark:text-gray-100 bg-transparent hover:bg-purple-100 dark:hover:bg-violet-500 w-full flex text-left rounded-md box-border p-3"
             >
-              <span class="mr-3 text-2xl text-gray-900 dark:text-gray-100"><Icon icon="bi:person-circle" /></span>
+              <span class="mr-3 text-2xl text-gray-900 dark:text-gray-100"><Icon class="mt-2" icon="bi:person-circle" /></span>
               <span class="w-full"> My Profile </span>
               <span class="box-border mt-1 text-gray-500"> </span>
             </button>
@@ -62,7 +62,7 @@
             <button
               class="text-purple-800 dark:text-gray-100 bg-transparent hover:bg-purple-100 dark:hover:bg-violet-500 w-full flex text-left rounded-md box-border p-3"
             >
-              <span class="mr-3 text-2xl text-gray-900 dark:text-gray-100"><Icon icon="bi:person" /></span>
+              <span class="mr-3 text-2xl text-gray-900 dark:text-gray-100"><Icon class="mt-2" icon="bi:person" /></span>
               <span class="w-full"> Role</span>
               <span class="box-border mt-1 text-gray-500"> </span>
             </button>
@@ -71,7 +71,7 @@
         <div class="item mt-3 ">
           <menu-accordion>
             <template v-slot:icon>
-              <Icon class="dark:text-gray-100" icon="bi:film" />
+              <Icon class="dark:text-gray-100 mt-2" icon="bi:film" />
             </template>
             <template v-slot:title><p class="text-purple-800 dark:text-gray-100 "> Movies </p> </template>
             <template v-slot:content>
@@ -96,8 +96,19 @@
           <button
             class="text-purple-800 dark:text-gray-100 bg-transparent hover:bg-purple-100 dark:hover:bg-violet-500 w-full flex text-left rounded-md box-border p-3"
           >
-            <span class="mr-3 text-xl text-gray-900 dark:text-gray-100"><Icon icon="bi:clock" /></span>
+            <span class="mr-3 text-xl text-gray-900 dark:text-gray-100"><Icon class="mt-2" icon="bi:clock" /></span>
             <span class="w-full"> Time </span>
+            <span class="box-border mt-1 text-gray-500"> </span>
+          </button>
+        </router-link>
+      </div>
+      <div class="item mt-3">
+        <router-link to="/Price">
+          <button
+            class="text-purple-800 dark:text-gray-100 bg-transparent hover:bg-purple-100 dark:hover:bg-violet-500 w-full flex text-left rounded-md box-border p-3"
+          >
+            <span class="mr-3 text-xl text-gray-900 dark:text-gray-100"><Icon  icon="bi:currency-dollar" class="mt-2"/></span>
+            <span class="w-full"> Price </span>
             <span class="box-border mt-1 text-gray-500"> </span>
           </button>
         </router-link>
@@ -107,7 +118,7 @@
           <button
             class="text-purple-800 dark:text-gray-100 bg-transparent hover:bg-purple-100 dark:hover:bg-violet-500 w-full flex text-left rounded-md box-border p-3"
           >
-            <span class="mr-3 text-xl text-gray-900 dark:text-gray-100"><Icon icon="bi:bank" /></span>
+            <span class="mr-3 text-xl text-gray-900 dark:text-gray-100"><Icon class="mt-2" icon="bi:bank" /></span>
             <span class="w-full"> Hall </span>
             <span class="box-border mt-1 text-gray-500"> </span>
           </button>
@@ -124,7 +135,7 @@
           <button
             class="text-purple-800 dark:text-gray-100 bg-transparent hover:bg-purple-100 dark:hover:bg-violet-500 w-full flex text-left rounded-md box-border p-3"
           >
-            <span class="mr-3 text-xl text-gray-900 dark:text-gray-100"><Icon icon="bi:file-person" /></span>
+            <span class="mr-3 text-xl text-gray-900 dark:text-gray-100"><Icon class="mt-2" icon="bi:file-person" /></span>
             <span class="w-full"> Employee </span>
             <span class="box-border mt-1 text-gray-500"> </span>
           </button>
@@ -136,7 +147,7 @@
           <button
             class="text-purple-800 dark:text-gray-100 bg-transparent hover:bg-purple-100 dark:hover:bg-violet-500 w-full flex text-left rounded-md box-border p-3"
           >
-            <span class="mr-3 text-xl text-gray-900 dark:text-gray-100"><Icon icon="bi:person-video2" /></span>
+            <span class="mr-3 text-xl text-gray-900 dark:text-gray-100"><Icon class="mt-2" icon="bi:person-video2" /></span>
             <span class="w-full"> End User </span>
             <span class="box-border mt-1 text-gray-500"> </span>
           </button>

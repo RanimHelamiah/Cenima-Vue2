@@ -13,6 +13,7 @@ import { time } from "./modules/time"
 import { movie } from "./modules/movie"
 import { role } from "./modules/role"
 import { hall } from "./modules/hall"
+import { price } from "./modules/price"
 //Vue.use(Vuex)
 
 export default new Vuex.Store({
@@ -23,6 +24,7 @@ export default new Vuex.Store({
     hall,
     time,
     movie,
+    price
   },
 })
 

@@ -129,7 +129,25 @@ export const movie ={
                });
 
               //console.log(response.data.data);
-          }
+          },
+          async indexprice(context) {
+            axios.defaults.headers.common['Authorization'] = 'Bearer ' + localStorage.getItem('access_token')
+              const response = await axios.get('/Price')
+              .then((response) => {
+                //console.log(response)
+                context.commit('index', response.data.data);
+              })
+              .catch((error) => {
+                console.log(error);
+              });
+               //console.log(response.data.data.data);
+          },
+          async updateprice( context, price) {
+            axios.defaults.headers.common['Authorization'] = 'Bearer ' + localStorage.getItem('access_token')
+              const response = await axios.put('/Price/'+price.id, price);
+              // console.log(response.data.data);
+              context.commit('update', response.data.data);
+          },
     },
 
 }
