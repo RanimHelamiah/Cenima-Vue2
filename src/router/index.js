@@ -12,8 +12,16 @@ import hallindex from "../views/Admin/Hall/index-hall.vue"
 import movieindex from "../views/Admin/Movie/index.vue";
 import createmovie from "../views/Admin/Movie/create-movie.vue";
 import editmovie from "../views/Admin/Movie/edit-movie.vue";
+import showmovie from "../views/Admin/Movie/show-movie.vue";
 import rolemanager from "../views/Admin/RolePer/rolemanager.vue";
 import price from "../views/Admin/Price/index-price.vue";
+import snackindex from "../views/Admin/Snack/index-snack.vue";
+import snackcreate from "../views/Admin/Snack/create-snack.vue";
+import snackedit from "../views/Admin/Snack/edit-snack.vue";
+import snackshow from "../views/Admin/Snack/show-snack.vue";
+import indexuser from "../views/Admin/User-Managment/index-user.vue";
+import createuser from "../views/Admin/User-Managment/create-user.vue";
+
 // Component Pages
 import Valert from "../views/components/alert.vue";
 import Vaccrodion from "../views/components/accordion.vue";
@@ -102,6 +110,16 @@ const routes = [
     },
   },
   {
+    path: "/Movie/show/:movieid",
+    name: "showmovie",
+    component: showmovie,
+    props: true,
+    meta: { 
+      title: "showmovie " + appname,
+      requiresAuth: true,
+    },
+  },
+  {
     path: "/Role/index",
     name: "rolemanager",
     component: rolemanager,
@@ -116,6 +134,62 @@ const routes = [
     component: price,
     meta: { 
       title: "price " + appname,
+      requiresAuth: true,
+    },
+  },
+  {
+    path: "/Snack/index",
+    name: "indexsnack",
+    component: snackindex,
+    meta: { 
+      title: "snackindex " + appname,
+      requiresAuth: true,
+    },
+  },
+  {
+    path: "/Snack/create",
+    name: "createsnack",
+    component: snackcreate,
+    meta: { 
+      title: "snackcreate " + appname,
+      requiresAuth: true,
+    },
+  },
+  {
+    path: "/Snack/edit/:snackid",
+    name: "snackedit",
+    component: snackedit,
+    props: true,
+    meta: { 
+      title: "snackedit " + appname,
+      requiresAuth: true,
+    },
+  },
+  {
+    path: "/Snack/show/:snackid",
+    name: "snackshow",
+    component: snackshow,
+    props: true,
+    meta: { 
+      title: "snackshow " + appname,
+      requiresAuth: true,
+    },
+  },
+  {
+    path: "/User/index",
+    name: "indexuser",
+    component: indexuser,
+    meta: { 
+      title: "indexuser " + appname,
+      requiresAuth: true,
+    },
+  },
+  {
+    path: "/User/create",
+    name: "createuser",
+    component: createuser,
+    meta: { 
+      title: "createuser " + appname,
       requiresAuth: true,
     },
   },

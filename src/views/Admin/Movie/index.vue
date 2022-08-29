@@ -54,12 +54,14 @@
                                 </td>
                                 <td class="py-3 px-6 text-center">
                                     <div class="flex item-center justify-center">
+                                        <router-link :to="{ name: 'showmovie', params:{movieid: movie.id}}">
                                             <button class="w-6 mr-2 transform hover:text-purple-300 hover:scale-110">
                                                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
                                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
                                                 </svg>
                                             </button>
+                                        </router-link>
                                         <!-- </router-link>:to="{ name: 'timeedit', params:{timeid: time.id}}" -->
                                         <router-link :to="{ name: 'editmovie', params:{movieid: movie.id}}">
                                             <button class="w-6 mr-2 transform hover:text-purple-300 hover:scale-110">
@@ -85,7 +87,6 @@
  </AdminLayout>
 </template>
 
-
 <script>
   // @ is an alias to /src
   import AdminLayout from '@/Layouts/AdminLayout'
@@ -103,13 +104,10 @@
    methods:{
     ...mapActions('movie',['index','delete']),
     destroy(id) {
-       // console.log(movie.id)
        this.delete(id)
-       .then(response => {
-         // console.log(response)
+        .then(response => {
           this.$router.push({ name: 'movieindex' })
           this.successMessage="movie Deleted Successfully!"
-
         })
         .catch(error => {
             console.log(error)
@@ -118,24 +116,7 @@
    },
     created() {
         this.index()
-       // this.indexprice()
     },
-    
-    computed:mapGetters('movie', {
-        allmovies: "allmovies",
-        }),
-   
-    
+    computed:mapGetters('movie',{allmovies : "allmovies"}),
 }
-  </script>
-  <!-- methods:mapActions('auth',['deleteToken']),
-  created() {
-    this.deleteToken()
-      .then(response => {
-          console.log(response)
-          this.$router.replace({ name: 'login' })
-      })
-      .catch(error => {
-        console.log(error)
-      })
-  } -->
+</script>
