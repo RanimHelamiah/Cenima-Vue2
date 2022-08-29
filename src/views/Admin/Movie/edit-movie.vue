@@ -158,7 +158,6 @@ export default {
     
     created(){
         this.edit(this.movieid)
-        // console.log(this.movieid)
     },
 
     computed:mapGetters('movie', {
@@ -166,8 +165,6 @@ export default {
             allgenres: "allgenres",
             alltimes: "alltimes",
             editmovie: "editmovie",
-            movie_times:"movie_times",
-            movie_genres:"movie_genres",
             }),
 }
 </script>
