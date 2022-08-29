@@ -11,32 +11,41 @@ export const movie ={
         genres:Object,
         halls:Object,
         times:Object,
-        movie_times: [],
-        movie_genres: [],
-        movie_hall:Object,
-        signedin:localStorage.getItem('access_token')?true:false,
+        movie_times: Object,
+        movie_genres: Object,
     },
       getters: {
         allmovies: state => state.movies,
-        allgenres:state =>state.movies.genres,
-        alltimes:state=>state.movies.times,
-        allhalls:state=>state.movies.halls,
         editmovie: state => state.movie,
-        edithall: state => state.movie.hall,
-        editgenres: state => state.movie.genres,
-        edittimes: state => state.movie.times,
+        allgenres:state =>state.genres,
+        alltimes:state=>state.times,
+        allhalls:state=>state.halls,
+        movie_times:state=>state.movie_times,
+        movie_genres:state=>state.movie_genres,
       },
 
     mutations: {
           index : (state, movies) => state.movies = movies,
-          create : (state,movies) => state.movies = movies,
+          create : (state,movies) => {
+            state.movies = movies;
+            state.halls = movies.halls;
+            state.genres = movies.genres;
+            state.times = movies.times;
+
+          },
           store : (state, movie) => state.movies.push(movie),
           show: (state, movie) => {
             state.movie = movie;
           },
           edit: (state, movie) => {
-            state.movie = movie;
-            //console.log(state.movie)
+            // console.log(movie)
+            state.movie = movie.movie;
+            state.halls = movie.halls;
+            state.genres = movie.genres;
+            state.times = movie.times;
+            state.movie_genres = movie.movie_genres;
+            console.log(movie_genres)
+            state.movie_times = movie.movie_times;
           },
           update: (state, movie) => {
               const index = state.movies.findIndex(t => t.id === movie.id);
@@ -95,12 +104,13 @@ export const movie ={
           async edit( context, movieid) {
            // console.log(movieid)
             axios.defaults.headers.common['Authorization'] = 'Bearer ' + localStorage.getItem('access_token')
-            const response = await axios.get('Movie/'+movieid+'/edit',{
+            const response = await axios.get('Movie/'+movieid+'/edit',
+            {
               headers: {
                 'Content-Type': 'multipart/form-data'
-            }
+                       }
             })
-            //console.log(response)
+            // console.log(response.data.data)
 
             .then(response => {
               context.commit('edit', response.data.data);
@@ -113,9 +123,19 @@ export const movie ={
         },
           async update( context, editmovie) {
             axios.defaults.headers.common['Authorization'] = 'Bearer ' + localStorage.getItem('access_token')
-              const response = await axios.put('/Movie/'+editmovie.movie.id, editmovie);
-              // console.log(response.data.data);
+              const response = await axios.post('/Movie/'+editmovie.id, editmovie,
+              {
+              headers: {
+                'Content-Type': 'multipart/form-data'
+                      }
+              })
+              .then(response => {
+              console.log(response.data.data);
               context.commit('update', response.data.data);
+              })
+              .catch(error => {
+                console.log(error.response.data)
+              });
           },
           async delete( context, movie) {
             axios.defaults.headers.common['Authorization'] = 'Bearer ' + localStorage.getItem('access_token')

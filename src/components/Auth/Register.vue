@@ -133,7 +133,7 @@ export default {
         .then(response => {
           this.successMessage = 'Registered Successfully!'
           this.$router.push({ name: 'login', params: { dataSuccessMessage: this.successMessage } })
-          console.log(response)
+          //console.log(response)
         })
         .catch(error => {
           this.name=""
