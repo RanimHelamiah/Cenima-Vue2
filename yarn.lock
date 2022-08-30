@@ -4176,6 +4176,13 @@
   "resolved" "https://registry.npmjs.org/klona/-/klona-2.0.5.tgz"
   "version" "2.0.5"
 
+"laravel-vue-pagination@^3.0.0":
+  "integrity" "sha512-kskpo+1Ciz1uo1VWjgnwdeBv6M6sF3Hus/VnwFvPOUSpfsR/WVaE+nCN2QOE0FBcV5e32o/Nel5397Q8pgWQQg=="
+  "resolved" "https://registry.npmjs.org/laravel-vue-pagination/-/laravel-vue-pagination-3.0.0.tgz"
+  "version" "3.0.0"
+  dependencies:
+    "vue" "^3.2.25"
+
 "launch-editor-middleware@^2.2.1":
   "integrity" "sha512-GJR64trLdFFwCoL9DMn/d1SZX0OzTDPixu4mcfWTShQ4tIqCHCGvlg9fOEYQXyBlrSMQwylsJfUWncheShfV2w=="
   "resolved" "https://registry.npmjs.org/launch-editor-middleware/-/launch-editor-middleware-2.3.0.tgz"
@@ -6731,7 +6738,7 @@
   "resolved" "https://registry.npmjs.org/vue-template-es2015-compiler/-/vue-template-es2015-compiler-1.9.1.tgz"
   "version" "1.9.1"
 
-"vue@^2 || ^3.2.13", "vue@^3.0.0", "vue@^3.0.0 || ^2.0.0", "vue@^3.0.0-0 || ^2.6.0", "vue@^3.0.2", "vue@^3.2.0", "vue@^3.2.13", "vue@> 3.0.0", "vue@>=3.0.0", "vue@3.2.31", "vue@3.x":
+"vue@^2 || ^3.2.13", "vue@^3.0.0", "vue@^3.0.0 || ^2.0.0", "vue@^3.0.0-0 || ^2.6.0", "vue@^3.0.2", "vue@^3.2.0", "vue@^3.2.13", "vue@^3.2.25", "vue@> 3.0.0", "vue@>=3.0.0", "vue@3.2.31", "vue@3.x":
   "integrity" "sha512-odT3W2tcffTiQCy57nOT93INw1auq5lYLLYtWpPYQQYQOOdHiqFct9Xhna6GJ+pJQaF67yZABraH47oywkJgFw=="
   "resolved" "https://registry.npmjs.org/vue/-/vue-3.2.31.tgz"
   "version" "3.2.31"
