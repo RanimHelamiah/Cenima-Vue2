@@ -77,6 +77,11 @@
     import { mapGetters,mapActions } from 'vuex'
     export default {
       name: "indexuser",
+      data(){
+        return{
+        successMessage : "",
+        }
+      },
       components: {
       AdminLayout,
       },
