@@ -19,6 +19,18 @@ export const role ={
           show: (state, role) => state.roles = state.roles.get(t => role.id == t.id),
 
           store : (state, role) => state.roles.push(role),
+          grant: (state, role) => {
+            const index = state.roles.findIndex(t => t.id === role.id);
+            if(index !== -1) {
+                state.roles.splice(index, 1, role);
+            }        
+          },
+          revoke: (state, role) => {
+            const index = state.roles.findIndex(t => t.id === role.id);
+            if(index !== -1) {
+                state.roles.splice(index, 1, role);
+            }        
+          },
           update: (state, role) => {
               const index = state.roles.findIndex(t => t.id === role.id);
               if(index !== -1) {
@@ -53,6 +65,38 @@ export const role ={
               const response = await axios.put('/roles'+role.id, role);
               // console.log(response.data.data);
               context.commit('update', response.data.data);
+          },
+          async grant( context, editrole) {
+            axios.defaults.headers.common['Authorization'] = 'Bearer ' + localStorage.getItem('access_token')
+              const response = await axios.post('/roles/grant'+editrole.id, editrole,
+              {
+              headers: {
+                'Content-Type': 'multipart/form-data'
+                      }
+              })
+              .then(response => {
+              console.log(response);
+              context.commit('grant', response.data.data);
+              })
+              .catch(error => {
+                console.log(error.response.data)
+              });
+          },
+          async revoke( context, editrole) {
+            axios.defaults.headers.common['Authorization'] = 'Bearer ' + localStorage.getItem('access_token')
+              const response = await axios.post('/roles/revoke'+editrole.id, editrole,
+              {
+              headers: {
+                'Content-Type': 'multipart/form-data'
+                      }
+              })
+              .then(response => {
+              console.log(response);
+              context.commit('revoke', response.data.data);
+              })
+              .catch(error => {
+                console.log(error.response.data)
+              });
           },
           async delete( context, roles) {
             const response = await axios.delete('/roles'+role.id);

@@ -40,8 +40,8 @@
                                       </div>
                                   </td>
                                   <td class="py-3 px-6 text-center">
-                                      <div class="flex items-center justify-center">
-                                          <!-- {{user.roles}} -->
+                                      <div class="flex items-center justify-center" v-for="role in user.roles" :key="role.id">
+                                          {{role.name}}
                                       </div>
                                   </td>
                                   <td class="py-3 px-6 text-center">
