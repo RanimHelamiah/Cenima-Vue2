@@ -62,7 +62,6 @@
                                                 </svg>
                                             </button>
                                         </router-link>
-                                        <!-- </router-link>:to="{ name: 'timeedit', params:{timeid: time.id}}" -->
                                         <router-link :to="{ name: 'editmovie', params:{movieid: movie.id}}">
                                             <button class="w-6 mr-2 transform hover:text-purple-300 hover:scale-110">
                                                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
