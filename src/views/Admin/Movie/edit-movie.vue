@@ -34,7 +34,7 @@
                    border-0 border-b-2 border-purple-300 appearance-none dark:text-white 
                    dark:border-purple-600 dark:focus:border-violet-500 focus:outline-none
                    focus:ring-0 focus:border-violet-600 peer" v-model="editmovie.hall_id" required >
-		         	<option value selected disabled>Select Hall</option>
+		         	<option  disabled>Select Hall</option>
                     <option   v-for="hall in allhalls" :key="hall.id" :value="hall.id">
                        {{ hall.name}}
                     </option>
@@ -47,7 +47,7 @@
                    border-0 border-b-2 border-purple-300 appearance-none dark:text-white 
                    dark:border-purple-600 dark:focus:border-violet-500 focus:outline-none
                    focus:ring-0 focus:border-violet-600 peer" v-model="editmovie.type" required >
-		         	<option value selected disabled>Select Type</option>
+		         	<option  disabled>Select Type</option>
                     <option   value="2D" >
                        2D
                     </option>
@@ -58,27 +58,27 @@
 		        </div>
                     
                 <div class="relative z-0 mb-6 w-full group">
-		          <select name="starttime[]" id="starttime" 
+		          <select name="times[]" id="times" 
                    class="block py-2.5 px-0 w-full text-md text-purple-900 dark:text-purple-200 
                    dark:bg-purple-900 bg-transparent
                    border-0 border-b-2 border-purple-300 appearance-none dark:text-white 
                    dark:border-purple-600 dark:focus:border-violet-500 focus:outline-none
-                   focus:ring-0 focus:border-violet-600 peer" v-model="editmovie.times" required >
-		         	<option value selected disabled class="bg-purple-200 dark:bg-purple-900">Select Starttime</option>
+                   focus:ring-0 focus:border-violet-600 peer" v-model="editmovie.times"  >
+		         	<option  disabled class="bg-purple-200 dark:bg-purple-900">Select Starttime</option>
                     <option   v-for="time in alltimes" :key="time.id" :value="time.id">
                        {{ time.starttime}}
                     </option>
                  </select>
 		        </div>
                 <div class="relative z-0 mb-6 w-full group">
-		          <select name="genre[]" id="genre"
+		          <select name="genres[]" id="genres[]"
                    class="block py-2.5 px-0 w-full text-md text-purple-900 dark:text-purple-200 
                    dark:bg-purple-900 bg-transparent
                    border-0 border-b-2 border-purple-300 appearance-none dark:text-white 
                    dark:border-purple-600 dark:focus:border-violet-500 focus:outline-none
                    focus:ring-0 focus:border-violet-600 peer" v-model="editmovie.genres" >
-		         	<option value selected disabled class="bg-purple-200 dark:bg-purple-900">Select Genre</option>
-                    <option v-for="genre in allgenres" :key="genre.id" :value="genre.id"   required>
+		         	<option  disabled class="bg-purple-200 dark:bg-purple-900">Select Genre</option>
+                    <option v-for="genre in allgenres" :key="genre.id" :value="genre.id" >
                        {{genre.name}}
                     </option>
                  </select>
@@ -100,7 +100,7 @@
                    border-0 border-b-2 border-purple-300 appearance-none dark:text-white 
                    dark:border-purple-600 dark:focus:border-violet-500 focus:outline-none
                    focus:ring-0 focus:border-violet-600 peer" v-model="editmovie.showing_type" required >
-		         	<option value selected disabled>Select showing_type</option>
+		         	<option  disabled>Select showing_type</option>
                     <option value="now showing">
                        Now Showing
                     </option>
@@ -137,7 +137,7 @@ export default {
     },
     data() {
         return {
-            //movie:this.editmovie,
+            //  editmovie:this.editmovie,
             successMessage:""
         }
     },

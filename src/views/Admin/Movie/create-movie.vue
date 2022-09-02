@@ -54,26 +54,26 @@
 		        </div>
                     
                 <div class="relative z-0 mb-6 w-full group">
-		          <select name="starttime[]" id="starttime" 
+		          <select name="times[]" id="times[]" 
                    class="block py-2.5 px-0 w-full text-md text-purple-900 dark:text-purple-200 
                    dark:bg-purple-900 bg-transparent
                    border-0 border-b-2 border-purple-300 appearance-none dark:text-white 
                    dark:border-purple-600 dark:focus:border-violet-500 focus:outline-none
-                   focus:ring-0 focus:border-violet-600 peer" v-model="times" required >
-		         	<option value selected disabled class="bg-purple-200 dark:bg-purple-900">Select Starttime</option>
+                   focus:ring-0 focus:border-violet-600 peer" v-model="times" multiple >
+		         	<option  disabled class="bg-purple-200 dark:bg-purple-900">Select Starttime</option>
                     <option   v-for="time in alltimes" :key="time.id" :value="time.id">
                        {{ time.starttime}}
                     </option>
                  </select>
 		        </div>
                 <div class="relative z-0 mb-6 w-full group">
-		          <select name="genre[]" id="genre"
+		          <select name="genres[]" id="genrse[]"
                    class="block py-2.5 px-0 w-full text-md text-purple-900 dark:text-purple-200 
                    dark:bg-purple-900 bg-transparent
                    border-0 border-b-2 border-purple-300 appearance-none dark:text-white 
                    dark:border-purple-600 dark:focus:border-violet-500 focus:outline-none
-                   focus:ring-0 focus:border-violet-600 peer" v-model="genres" required >
-		         	<option value selected disabled class="bg-purple-200 dark:bg-purple-900">Select Genre</option>
+                   focus:ring-0 focus:border-violet-600 peer" v-model="genres" multiple >
+		         	<option  disabled class="bg-purple-200 dark:bg-purple-900">Select Genre</option>
                     <option   v-for="genre in allgenres" :key="genre.id" :value="genre.id">
                        {{genre.name}}
                     </option>
@@ -161,8 +161,8 @@ export default {
                 'video': this.video,
                 'image': this.image,
                 'hall_id': this.hall_id,
-                'times': this.times,
-                'genres': this.genres,
+                'times[]': this.times,
+                'genres[]': this.genres,
                 'type': this.type,
                 'from': this.from,
                 'to': this.to,

@@ -24,7 +24,7 @@
                         Buy Ticket
                     </button>
                     </a>
-                    <router-link :to="{name: 'indexsnack'}">
+                    <router-link :to="{name: 'movieindex'}">
                             <button class="p-1 rounded-md hover:bg-purple-500 bg-violet-700" 
                             style="width:150px; margin-top:30px; padding:10px; color:whitesmoke; margin-right:80px;">
                                 <i class="fa fa-chevron-left" fa-2x aria-hidden="true"></i>
@@ -38,7 +38,7 @@
 
         <!-- Login banner -->
         <div class="flex flex-wrap content-center justify-center rounded-r-md" style="width: 48rem; height: 32rem; padding-right: 16rem;padding-bottom: 2rem;">
-        <img class="w-full h-full bg-center bg-no-repeat bg-cover rounded-r-md" :src="showmovie.image">
+        <img class="w-full h-full bg-center bg-no-repeat bg-cover rounded-r-md"  :src="showmovie.image" /> >
         </div>
 
     </div>

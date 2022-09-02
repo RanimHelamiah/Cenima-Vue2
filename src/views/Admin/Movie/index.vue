@@ -79,7 +79,7 @@
                             </tr>
                         </tbody>
                     </table>
-                    <Pagination :data="allmovies" @pagination-change-page="getmovies" class="mt-4 bg-green-900" />
+                    <!-- <Pagination :data="allmovies" @pagination-change-page="getmovies" class="mt-4 bg-green-900" /> -->
                     
                     <!-- <pagination :data="allmovies">
                         <template #prev-nav>
@@ -100,13 +100,13 @@
   // @ is an alias to /src
   import AdminLayout from '@/Layouts/AdminLayout'
   import { mapGetters,mapActions } from 'vuex'
-  import LaravelVuePagination from "laravel-vue-pagination";
+//   import LaravelVuePagination from "laravel-vue-pagination";
   import axios from 'axios'
   export default {
     name: "movieindex",
     components: {
     AdminLayout,
-    LaravelVuePagination,
+    // LaravelVuePagination,
    },
    data(){
     return{
@@ -129,8 +129,8 @@
             console.log(error)
         })
       },
-      getmovies(page = 1) {
-        console.log('kdkk')
+    getmovies(page = 1) {
+        // console.log('kdkk')
             axios.get('/Movie?page=' + page)
                 .then(response => {
                     this.allmovies = response.data;

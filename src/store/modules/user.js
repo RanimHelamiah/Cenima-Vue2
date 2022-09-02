@@ -7,6 +7,7 @@ export const user ={
     namespaced: true,
     state: {
         users:[],
+        user:Object,
       },
 
       getters: {
@@ -14,7 +15,9 @@ export const user ={
       },
 
     mutations: {
-          index : (state, users) => state.users = users,
+          index : (state, users) => {
+            state.users = users;
+          },
           deactivate:(state, user) => {
             const index = state.users.findIndex(t => t.id === user.id);
             if(index !== -1) {
