@@ -56,19 +56,17 @@
     MenuAccordion,
     Icon
    },
-   methods: {
-     
-    },
+   
 
    methods:{
-    ...mapActions('role', {index: "index"}),
+    ...mapActions('role', {indexrole: "indexrole"}),
      toggleAccordion() {
         this.isOpen = !this.isOpen;
       },
    },
    computed:mapGetters('role', {allroles: "allroles"}),
    created() {
-      this.index()
+      this.indexrole()
    }
 }
   

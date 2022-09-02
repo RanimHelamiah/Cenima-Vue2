@@ -14,17 +14,12 @@ export const role ={
       },
 
     mutations: {
-          index : (state, roles) => state.roles = roles ,
+          indexrole : (state, roles) => state.roles = roles ,
           
           show: (state, role) => state.roles = state.roles.get(t => role.id == t.id),
 
           store : (state, role) => state.roles.push(role),
-          grant: (state, role) => {
-            const index = state.roles.findIndex(t => t.id === role.id);
-            if(index !== -1) {
-                state.roles.splice(index, 1, role);
-            }        
-          },
+          grant: (state, role) => state.roles.push(role),
           revoke: (state, role) => {
             const index = state.roles.findIndex(t => t.id === role.id);
             if(index !== -1) {
@@ -42,12 +37,12 @@ export const role ={
 
 
     actions:{
-          async index(context) {
+          async indexrole(context) {
              axios.defaults.headers.common['Authorization'] = 'Bearer ' + localStorage.getItem('access_token')
               const response = await axios.get('/roles');
               //console.log(response)
               // console.log(response.data.data.data);
-              context.commit('index', response.data.data);
+              context.commit('indexrole', response.data.data);
           },
           async show(context, role) {
             axios.defaults.headers.common['Authorization'] = 'Bearer ' + localStorage.getItem('access_token')
@@ -66,14 +61,9 @@ export const role ={
               // console.log(response.data.data);
               context.commit('update', response.data.data);
           },
-          async grant( context, editrole) {
+          async grant(context, user) {
             axios.defaults.headers.common['Authorization'] = 'Bearer ' + localStorage.getItem('access_token')
-              const response = await axios.post('/roles/grant'+editrole.id, editrole,
-              {
-              headers: {
-                'Content-Type': 'multipart/form-data'
-                      }
-              })
+              const response = await axios.post('/roles/grant',user)
               .then(response => {
               console.log(response);
               context.commit('grant', response.data.data);

@@ -21,6 +21,7 @@ import snackedit from "../views/Admin/Snack/edit-snack.vue";
 import snackshow from "../views/Admin/Snack/show-snack.vue";
 import indexuser from "../views/Admin/User-Managment/index-user.vue";
 import createuser from "../views/Admin/User-Managment/create-user.vue";
+import gr_role from "../views/Admin/User-Managment/gr_role.vue";
 
 // Component Pages
 import Valert from "../views/components/alert.vue";
@@ -190,6 +191,16 @@ const routes = [
     component: createuser,
     meta: { 
       title: "createuser " + appname,
+      requiresAuth: true,
+    },
+  },
+  {
+    path: "/User/edit/:userid",
+    name: "gr_role",
+    component: gr_role,
+    props: true,
+    meta: { 
+      title: "gr_role " + appname,
       requiresAuth: true,
     },
   },
