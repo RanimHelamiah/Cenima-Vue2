@@ -6,6 +6,7 @@ axios.defaults.baseURL = 'http://127.0.0.1:8000/api'
 export const role ={
     namespaced: true,
     state: {
+        roles:[],
         signedin:localStorage.getItem('access_token')?true:false
       },
 
@@ -19,12 +20,13 @@ export const role ={
           show: (state, role) => state.roles = state.roles.get(t => role.id == t.id),
 
           store : (state, role) => state.roles.push(role),
-          grant: (state, role) => state.roles.push(role),
+          grant: (state, role) => {
+            const index =state.role ;
+            state.user.splice(index, 1, role);  
+          },
           revoke: (state, role) => {
-            const index = state.roles.findIndex(t => t.id === role.id);
-            if(index !== -1) {
-                state.roles.splice(index, 1, role);
-            }        
+            const index =state.role ;
+            state.user.splice(index, 1, role);  
           },
           update: (state, role) => {
               const index = state.roles.findIndex(t => t.id === role.id);
@@ -61,9 +63,12 @@ export const role ={
               // console.log(response.data.data);
               context.commit('update', response.data.data);
           },
-          async grant(context, user) {
+          async grant(context, data) {
             axios.defaults.headers.common['Authorization'] = 'Bearer ' + localStorage.getItem('access_token')
-              const response = await axios.post('/roles/grant',user)
+              const response = await axios.post('/roles/grant',{
+                user_id: data.user_id,
+                role: data.role,
+              })
               .then(response => {
               console.log(response);
               context.commit('grant', response.data.data);
@@ -72,13 +77,11 @@ export const role ={
                 console.log(error.response.data)
               });
           },
-          async revoke( context, editrole) {
+          async revoke( context, data) {
             axios.defaults.headers.common['Authorization'] = 'Bearer ' + localStorage.getItem('access_token')
-              const response = await axios.post('/roles/revoke'+editrole.id, editrole,
-              {
-              headers: {
-                'Content-Type': 'multipart/form-data'
-                      }
+              const response = await axios.post('/roles/revoke',{
+                user_id: data.user_id,
+                role: data.role,
               })
               .then(response => {
               console.log(response);
@@ -88,21 +91,12 @@ export const role ={
                 console.log(error.response.data)
               });
           },
-          async delete( context, roles) {
-            const response = await axios.delete('/roles'+role.id);
-            context.commit('delete', roles);
+          async delete( context, role) {
+            console.log(role)
+            const response = await axios.delete('/roles/'+role);
+            context.commit('delete', role);
             console.log(response.data.data);
         }
-        //   async deactivate( context, role) {
-        //     const response = await axios.get('/role/deactivate/'+role.id);
-        //     context.commit('deactivate', role);
-        //     console.log(response.data.data);
-        // },
-        // async activate( context, role) {
-        //     const response = await axios.get('/role/activate/'+role.id);
-        //     context.commit('activate', role);
-        //     console.log(response.data.data);
-        // }
     },
 
 }

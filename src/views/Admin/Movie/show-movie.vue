@@ -38,7 +38,7 @@
 
         <!-- Login banner -->
         <div class="flex flex-wrap content-center justify-center rounded-r-md" style="width: 48rem; height: 32rem; padding-right: 16rem;padding-bottom: 2rem;">
-        <img class="w-full h-full bg-center bg-no-repeat bg-cover rounded-r-md"  :src="showmovie.image" /> >
+        <img class="w-full h-full bg-center bg-no-repeat bg-cover rounded-r-md"  :src="`http://127.0.0.1:8000/${showmovie.image}`" />
         </div>
 
     </div>

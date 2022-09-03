@@ -47,7 +47,7 @@
           </router-link>
         </div>
         <div class="item mt-3">
-          <router-link to="/">
+          <router-link to="/Profile/myprofile">
             <button
               class="text-purple-800 dark:text-gray-100 bg-transparent hover:bg-purple-100 dark:hover:bg-violet-500 w-full flex text-left rounded-md box-border p-3"
             >
@@ -103,12 +103,23 @@
         </router-link>
       </div>
       <div class="item mt-3">
-        <router-link to="/Price">
+        <router-link to="/Price/index">
           <button
             class="text-purple-800 dark:text-gray-100 bg-transparent hover:bg-purple-100 dark:hover:bg-violet-500 w-full flex text-left rounded-md box-border p-3"
           >
             <span class="mr-3 text-xl text-gray-900 dark:text-gray-100"><Icon  icon="bi:currency-dollar" class="mt-2"/></span>
             <span class="w-full"> Price </span>
+            <span class="box-border mt-1 text-gray-500"> </span>
+          </button>
+        </router-link>
+      </div>
+      <div class="item mt-3">
+        <router-link to="/Account/edit">
+          <button
+            class="text-purple-800 dark:text-gray-100 bg-transparent hover:bg-purple-100 dark:hover:bg-violet-500 w-full flex text-left rounded-md box-border p-3"
+          >
+            <span class="mr-3 text-xl text-gray-900 dark:text-gray-100"><Icon  icon="bi:currency-dollar" class="mt-2"/></span>
+            <span class="w-full"> Distributor </span>
             <span class="box-border mt-1 text-gray-500"> </span>
           </button>
         </router-link>

@@ -15,6 +15,9 @@ import { hall } from "./modules/hall"
 import { price } from "./modules/price"
 import { snack } from "./modules/snack"
 import {user} from "./modules/user"
+import {profile} from "./modules/profile"
+import {account} from "./modules/account"
+import {permission} from "./modules/permission"
 //Vue.use(Vuex)
 
 export default new Vuex.Store({
@@ -28,6 +31,9 @@ export default new Vuex.Store({
     price,
     snack,
     user,
+    profile,
+    account,
+    permission
   },
 })
 

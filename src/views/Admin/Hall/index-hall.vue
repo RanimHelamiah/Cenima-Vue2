@@ -1,8 +1,24 @@
 <template>
   <AdminLayout>
     <div class="overflow-x-auto" >
-        <div class="flex m-4 justify-center">
-           <createhall />
+        <div class="flex mt-4 mr-20 justify-center">
+            <button name="new" v-if="isHidden" @click="isHidden = !isHidden" class="ml-20 bg-purple-200 dark:bg-violet-900 m-4 mr-8 text-3xl text-purple-900 dark:text-purple-200  
+            font-semibold px-3 py-1 border-2 border-purple-900 dark:border-purple-200 rounded-lg 
+            hover:text-purple-400 outline-none exact ">
+            Add New HaLL
+        </button>
+        <div v-if="!isHidden" class="ml-20">
+          <form @submit.prevent="add" class="mb-2 mt-4">
+              <input type="text"  placeholder="write the role name"  
+                style="width:250px;border-radius:6px;
+                border-width:2px;border-color:#340b56;"     
+                v-model="name" >
+              <button type="submit" class="text-white bg-violet-400 hover:bg-violet-200"
+              style="width:250px;height:40px; color:#340b56;border-radius:6px;
+                border-width:2px; border-color:#340b56;font-size:20px;padding-left:4px;
+                padding-right:4px; margin-left:20px;">Create</button>
+          </form>
+        </div>
         </div>
         <div class="min-w-screen min-h-3/4  flex m-4 justify-center bg-gray-100 
         dark:bg-purple-900 overflow-hidden">
@@ -43,24 +59,34 @@
   // @ is an alias to /src
   import AdminLayout from '@/Layouts/AdminLayout'
   import { mapGetters,mapActions } from 'vuex'
-  import createhall from './create-hall.vue'
   export default {
     name: "hallindex",
     components: {
     AdminLayout,
-    createhall
-},
-
-   methods:{
-    ...mapActions('hall',['index']),
-   },
+    },
+    data(){
+        return{
+           isHidden: true,
+        }
+    },
+    methods:{
+        ...mapActions('hall',['index','store']),
+            add(){
+                if (this.name.trim().length == 0 ) {
+                    return
+                }
+                const hall = {
+                    'name': this.name,
+                }
+                this.store(hall)
+                this.name=""
+                this.successMessage = 'hall Created Successfully!'
+            }
+    },
     created() {
         this.index()
 
     },
-    
-    computed:mapGetters('hall', {allhalls: "allhalls"}),
-   
-    
-}
-  </script>
+    computed:mapGetters('hall', {allhalls: "allhalls"}),  
+ }
+</script>
