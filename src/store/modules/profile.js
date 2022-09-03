@@ -7,7 +7,7 @@ export const profile ={
     namespaced: true,
     state: {
         user:[],
-        // user:Object,
+       // user:Object,
       },
 
       getters: {
@@ -24,13 +24,15 @@ export const profile ={
           mytickets : (state, user) => {
             state.user = user;
           },
-          editprofile: (state, movie) => {
+          editprofile: (state, user) => { 
+            const index = state.snacks.findIndex(t => t.id === user.id);
+            if(index !== -1) {
+                state.snacks.splice(index, 1, user);
+            }  
           },
           changepassword: (state, user) => {
-              const index = state.user.findIndex(t => t.id === user.id);
-              if(index !== -1) {
-                  state.user.splice(index, 1, user);
-              }        
+            const index =state.user ;
+            state.user.splice(index, 1, user);      
           },
       },
 
@@ -41,17 +43,41 @@ export const profile ={
               const response = await axios.get('/Profile/info');
                 //console.log(response);
               context.commit('info', response.data.data);
-          },
-          async activate( context, user) {
-            const response = await axios.get('/User/activate/'+user.id);
-            context.commit('activate', response.data.data);
-            console.log(response.data.data);
-         },
-          async deactivate( context, user) {
-            const response = await axios.get('/User/deactivate/'+user.id);
-            context.commit('deactivate', response.data.data);
-            console.log(response.data.data);
-         },
+          },  
+          async myOrders(context) {
+            axios.defaults.headers.common['Authorization'] = 'Bearer ' + localStorage.getItem('access_token')
+           const response = await axios.get('/Profile/myorders');
+             //console.log(response);
+           context.commit('myOrders', response.data.data);
+          },  
+          async mytickets(context) {
+            axios.defaults.headers.common['Authorization'] = 'Bearer ' + localStorage.getItem('access_token')
+          const response = await axios.get('/Profile/mytickets');
+            //console.log(response);
+          context.commit('mytickets', response.data.data);
+          },  
+          async editprofile( context ) {
+            axios.defaults.headers.common['Authorization'] = 'Bearer ' + localStorage.getItem('access_token')
+              const response = await axios.put('/Profile/editprofile')
+              .then(response => {
+              console.log(response);
+              context.commit('editprofile', response.data.data);
+              })
+              .catch(error => {
+                console.log(error.response.data)
+              });
+           },
+           async changepassword( context, showsnack) {
+            axios.defaults.headers.common['Authorization'] = 'Bearer ' + localStorage.getItem('access_token')
+              const response = await axios.put('/Profile/changepassword')
+              .then(response => {
+              console.log(response);
+              context.commit('changepassword', response.data.data);
+              })
+              .catch(error => {
+                console.log(error.response.data)
+              });
+           },
          
     },
 

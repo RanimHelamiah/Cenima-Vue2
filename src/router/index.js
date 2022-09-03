@@ -23,6 +23,8 @@ import indexuser from "../views/Admin/User-Managment/index-user.vue";
 import createuser from "../views/Admin/User-Managment/create-user.vue";
 import gr_role from "../views/Admin/User-Managment/gr_role.vue";
 import myprofile from "../views/Admin/Profile/myprofile.vue";
+import editinformaition from "../views/Admin/Profile/editinformaition.vue";
+import changepassword from "../views/Admin/Profile/changepassword.vue";
 
 // Component Pages
 import Valert from "../views/components/alert.vue";
@@ -204,12 +206,29 @@ const routes = [
       title: "gr_role " + appname,
       requiresAuth: true,
     },
-  },
-  
+  }, 
   {
     path: '/Profile/myprofile',
     name: 'myprofile',
     component: myprofile,
+    meta : { 
+      title:  appname,
+      requiresAuth: true,
+     }
+  },
+  {
+    path: '/Profile/editinformaition',
+    name: 'editinformaition',
+    component: editinformaition,
+    meta : { 
+      title:  appname,
+      requiresAuth: true,
+     }
+  }, 
+  {
+    path: '/Profile/changepassword',
+    name: 'changepassword',
+    component: changepassword,
     meta : { 
       title:  appname,
       requiresAuth: true,
