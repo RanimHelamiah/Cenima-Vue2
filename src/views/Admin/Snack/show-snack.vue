@@ -40,8 +40,8 @@
         </div>
 
         <!-- Login banner -->
-        <div class="flex flex-wrap content-center justify-center rounded-r-md" style="width: 48rem; height: 32rem; padding-right: 16rem;">
-        <img class="w-full h-full bg-center bg-no-repeat bg-cover rounded-r-md" src="https://i.imgur.com/9l1A4OS.jpeg">
+        <div class="flex flex-wrap content-center justify-center rounded-r-md" style="width: 48rem; height: 40rem; padding-right: 16rem;">
+        <img class="w-full h-full bg-center bg-no-repeat bg-cover rounded-r-md" :src="`http://127.0.0.1:8000/${showsnack.image}`">
         </div>
 
     </div>
