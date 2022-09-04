@@ -25,10 +25,8 @@ export const profile ={
             state.user = user;
           },
           editprofile: (state, user) => { 
-            const index = state.snacks.findIndex(t => t.id === user.id);
-            if(index !== -1) {
-                state.snacks.splice(index, 1, user);
-            }  
+            const index =state.user ;
+            state.user.splice(index, 1, user);  
           },
           changepassword: (state, user) => {
             const index =state.user ;
@@ -56,20 +54,27 @@ export const profile ={
             //console.log(response);
           context.commit('mytickets', response.data.data);
           },  
-          async editprofile( context ) {
+          async editprofile( context ,data) {
             axios.defaults.headers.common['Authorization'] = 'Bearer ' + localStorage.getItem('access_token')
-              const response = await axios.put('/Profile/editprofile')
+              const response = await axios.put('/Profile/editprofile', {
+                name: data.name,
+                phone: data.phone,
+              })
               .then(response => {
-              console.log(response);
+              //console.log(response);
               context.commit('editprofile', response.data.data);
               })
               .catch(error => {
                 console.log(error.response.data)
               });
-           },
-           async changepassword( context, showsnack) {
+            },
+           async changepassword( context, data) {
             axios.defaults.headers.common['Authorization'] = 'Bearer ' + localStorage.getItem('access_token')
-              const response = await axios.put('/Profile/changepassword')
+              const response = await axios.put('/Profile/changepassword', {
+                oldpassword: data.oldpassword,
+                newpassword: data.newpassword,
+                newpassword_confirmation: data.newpassword_confirmation,
+              })
               .then(response => {
               console.log(response);
               context.commit('changepassword', response.data.data);
@@ -77,7 +82,7 @@ export const profile ={
               .catch(error => {
                 console.log(error.response.data)
               });
-           },
+            },
          
     },
 

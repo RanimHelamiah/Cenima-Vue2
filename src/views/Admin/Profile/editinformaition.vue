@@ -28,9 +28,9 @@
             <h2 class="text-2xl font-bold text-purple-800 text-left mb-5">
               New Information
             </h2>
-            <form @submit.prevent="editprofile" class="w-full">
+            <form @submit.prevent="edit(userinfo)" class="w-full">
               <div id="input" class="flex flex-col w-full my-5">
-                <label for="username" class="text-purple-500 mb-2"
+                <label for="name" class="text-purple-500 mb-2"
                   >Name</label
                 >
                 <input
@@ -58,14 +58,14 @@
                 />
               </div>
               <div id="button" class="flex flex-col w-full my-5">
-                <button
-                  type="submit"
-                  class="w-full py-4 bg-violet-600 rounded-lg text-green-100"
-                >
-                  <div class="flex flex-row items-center justify-center">
-                    <div class="font-bold">Edit Information</div>
-                  </div>
-                </button>
+                  <button
+                    type="submit"
+                    class="w-full py-4 bg-violet-600 rounded-lg text-green-100"
+                  >
+                    <div class="flex flex-row items-center justify-center">
+                      <div class="font-bold">Edit Information</div>
+                    </div>
+                  </button>
               </div>
             </form>
           </div>
@@ -81,17 +81,21 @@ export default ({
     name: "editinformation",
     methods:{
       ...mapActions('profile',['info','editprofile']),
-      editprofile(){
-            this.editprofile(this.userinfo)
-
-            .then(response => {
-            this.successMessage = 'Updated Successfully!'
+      edit(userinfo){
+            const user={
+              name: userinfo.name,
+              phone: userinfo.phone,
+            }
+          this.editprofile(user)
+          .then(response => {
+            // this.successMessage = 'Information Updated Successfully!'
             this.$router.push({ name: 'myprofile'})
-             //console.log(response)
-            })
-            .catch(error => {
-                console.log(error.response)
-            })
+            console.log(response)
+          })
+          .catch(error => {
+            this.name=""
+            this.phone=""
+          })
         },
      },
     created() {

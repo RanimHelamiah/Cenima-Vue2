@@ -25,6 +25,7 @@ import gr_role from "../views/Admin/User-Managment/gr_role.vue";
 import myprofile from "../views/Admin/Profile/myprofile.vue";
 import editinformaition from "../views/Admin/Profile/editinformaition.vue";
 import changepassword from "../views/Admin/Profile/changepassword.vue";
+import distributor from "../views/Admin/distributor.vue";
 
 // Component Pages
 import Valert from "../views/components/alert.vue";
@@ -142,6 +143,15 @@ const routes = [
     },
   },
   {
+    path: "/Account/edit",
+    name: "distributor",
+    component: distributor,
+    meta: { 
+      title: "distributor " + appname,
+      requiresAuth: true,
+    },
+  },
+  {
     path: "/Snack/index",
     name: "indexsnack",
     component: snackindex,
@@ -211,6 +221,7 @@ const routes = [
     path: '/Profile/myprofile',
     name: 'myprofile',
     component: myprofile,
+    props: true,
     meta : { 
       title:  appname,
       requiresAuth: true,

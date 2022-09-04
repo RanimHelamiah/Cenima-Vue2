@@ -1,6 +1,6 @@
 <template>
   <header class="bg-purple-200 dark:bg-purple-800 p-2 border-b-2 dark:border-purple-700">
-    <div class="wrap-header flex items-center justify-between flex-wrap x">
+    <div class="wrap-header flex  items-center justify-between flex-wrap x">
       <div class="flex flex-no-shrink items-center">
         <button
           id="theme-toggle"
@@ -55,8 +55,8 @@
       </div>
     </div>
   </header>
-  <div class=" bg-purple-200 dark:bg-purple-900 flex flex-wrap items-center justify-center">
-    <div v-if="successMessage" class="success-message text-purple-900 darek:text-gray-100">{{ successMessage }}</div>
+  <div class=" bg-purple-200 dark:bg-purple-900 flex flex-wrap max-h-screen items-center justify-center">
+    <div v-if="successMessage" class="success-message text-purple-900 darek:text-gray-100">{{ dataSuccessMessage }}</div>
         <div class="container max-h-screen min-w-xl bg-purple-100 rounded dark:bg-purple-800 shadow-lg transform duration-200 easy-in-out mt-10 m-12">
             <div class="h-2/4 sm:h-64 overflow-hidden bg-violet-700 dark:bg-violet-300">
                 <!-- <img class="w-full h-full rounded-t"
@@ -133,6 +133,7 @@ import { mapGetters,mapActions } from 'vuex'
 import MenuAccordion from '@/components/MenuAccordion.vue';
 export default {
     name: "myprofile",
+    props:['dataSuccessMessage'],
     components:{
     Icon,
     Button,
