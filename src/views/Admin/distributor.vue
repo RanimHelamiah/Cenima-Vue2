@@ -1,7 +1,7 @@
 <template>
     <AdminLayout>
+      <div v-if="successMessage" class="success-message text-purple-900 darek:text-gray-100">{{ successMessage }}</div>
       <div class="flex justify-center m-4 mt-12 max-h-screen container  item-center px-6 mx-auto">
-       <div v-if="successMessage" class="success-message text-purple-900 darek:text-gray-100">{{ successMessage }}</div>
        <div class="w-3/4 md:w-full lg:w-7/12 mx-auto md:mx-0">
          <div class="bg-purple-200
           p-10 flex flex-col w-full shadow-xl rounded-xl">
@@ -79,17 +79,18 @@ export default ({
                 'code': this.code,
                 'points': this.points,
             }
-            // if(auth.user.roles == Admin){
-            this.adminUpdate(account)
-           .then(response => {
-            this.code=""
-            this.points=""
-            this.successMessage = 'Points Added Successfully!'
-            //console.log(response)
-           })
-           .catch(error => {
-               console.log(error.response)
-           })
+            console.log(auth.user)
+          //   // if(auth.user.roles == Admin){
+          //   this.adminUpdate(account)
+          //  .then(response => {
+          //   this.code=""
+          //   this.points=""
+          //   this.successMessage = 'Points Added Successfully!'
+          //   //console.log(response)
+          //  })
+          //  .catch(error => {
+          //      console.log(error.response)
+          //  })
 
           //   // }
           //   this.Update(account)

@@ -26,6 +26,8 @@ import myprofile from "../views/Admin/Profile/myprofile.vue";
 import editinformaition from "../views/Admin/Profile/editinformaition.vue";
 import changepassword from "../views/Admin/Profile/changepassword.vue";
 import distributor from "../views/Admin/distributor.vue";
+import indexorder from "../views/Order/orderd-order.vue";
+import approvedorder from "../views/Order/approved-order.vue";
 
 // Component Pages
 import Valert from "../views/components/alert.vue";
@@ -186,6 +188,24 @@ const routes = [
     props: true,
     meta: { 
       title: "snackshow " + appname,
+      requiresAuth: true,
+    },
+  },
+  {
+    path: "/Order/orderd",
+    name: "indexorder",
+    component: indexorder,
+    meta: { 
+      title: "indexorder " + appname,
+      requiresAuth: true,
+    },
+  },
+  {
+    path: "/Order/approved",
+    name: "approvedorder",
+    component: approvedorder,
+    meta: { 
+      title: "approvedorder " + appname,
       requiresAuth: true,
     },
   },

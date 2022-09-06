@@ -179,29 +179,29 @@
             })
         },
       
-      deactivated(user){
-          //console.log(id)
-        this.deactivate(user)
-          .then(response => {
-            this.$router.push({ name: 'indexuser' })
-            this.successMessage="user Dectivated Successfully!"
-          })
-          .catch(error => {
-              console.log(error)
-  
-          })
-      },
-      activated(user){
-          //console.log(user)
-        this.activate(user)
-          .then(response => {
-            this.$router.push({ name: 'indexuser' })
-            this.successMessage="user Activated Successfully!"
-          })
-          .catch(error => {
-              console.log(error)
-  
-          })
+        deactivated(user){
+            //console.log(id)
+            this.deactivate(user)
+            .then(response => {
+                this.$router.push({ name: 'indexuser' })
+                this.successMessage="user Dectivated Successfully!"
+            })
+            .catch(error => {
+                console.log(error)
+    
+            })
+        },
+        activated(user){
+            //console.log(user)
+            this.activate(user)
+            .then(response => {
+                this.$router.push({ name: 'indexuser' })
+                this.successMessage="user Activated Successfully!"
+            })
+            .catch(error => {
+                console.log(error)
+    
+            })
       },
       
      },

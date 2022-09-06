@@ -9,14 +9,17 @@ export const auth ={
     getters: {
       loggedIn(state) {
         return state.token !== null
-
       },
+      user: state => state.user,
     },
     mutations: {
-      retrieveToken(state, token) {
-        state.signedin=true
+      retrieveToken(state, blb ) {
+        console.log()
 
-        state.token = token
+        // state.signedin=true
+
+         state.token = blb.token.token
+         state.user = blb.user.original.data
       },
       destroyToken(state) {
 
@@ -33,12 +36,16 @@ export const auth ={
           })
             .then(response => {
                const token = response.data.data.token.token
-  
+              //  const user  = response.data.data.user.original.data
+              //  console.log(response.data.data)
+              //  console.log(token)
+
+               
                localStorage.setItem('access_token', token)
-               context.commit('retrieveToken', token)
-               resolve(response)
+               context.commit('retrieveToken', response.data.data)
+               resolve(response.data.data)
                //console.log(response);
-               context.commit('retrieveToken', response.data)
+              //  context.commit('retrieveToken', response)
             })
             .catch(error => {
               //console.log(error)
