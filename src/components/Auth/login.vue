@@ -71,15 +71,7 @@ export default {
     login() {
         const user={email: this.email,password: this.password,}
         this.retrieveToken(user)
-         //  .then(response => {
-         //    //console.log(response);
-         //    this.$router.push({ name: 'Dashboard'})
-         //  })
-         //  .catch(error => {
-         //     this.serverErrors = Object.values(error.response.data.errors)
-         //     this.password = ''
-         //    //this.successMessage = ''
-         //  })
+        this.$router.push({ name: 'Dashboard'})
       }
     }
   }

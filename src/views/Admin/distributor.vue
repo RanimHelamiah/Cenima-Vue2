@@ -1,5 +1,6 @@
 <template>
     <AdminLayout>
+      {{userroles}}
       <div v-if="successMessage" class="success-message text-purple-900 darek:text-gray-100">{{ successMessage }}</div>
       <div class="flex justify-center m-4 mt-12 max-h-screen container  item-center px-6 mx-auto">
        <div class="w-3/4 md:w-full lg:w-7/12 mx-auto md:mx-0">
@@ -79,37 +80,51 @@ export default ({
                 'code': this.code,
                 'points': this.points,
             }
-            console.log(auth.user)
-          //   // if(auth.user.roles == Admin){
-          //   this.adminUpdate(account)
-          //  .then(response => {
-          //   this.code=""
-          //   this.points=""
-          //   this.successMessage = 'Points Added Successfully!'
-          //   //console.log(response)
-          //  })
-          //  .catch(error => {
-          //      console.log(error.response)
-          //  })
+            // const map = new Map().set(1,"one").set(2,"two").set(3,"three");
+            // deleteIfNot(map, (k,v) => k % 2 === 0);
+            // console.log([...map]); // Output: "[ [ 2, 'two' ] ]"
+            const map = new Map(
+              [...mapGetters('auth', {userroles: "userroles"})]
+              // .filter(([k, v]) => v  3 )
+            );
+                        // userrole = userroles.filter(t => role.id !== t.id),
+            if(map,(k,v)=> v === 'Admin' ){
+              console.log([...map]);
 
-          //   // }
-          //   this.Update(account)
-          //  .then(response => {
-          //   this.code=""
-          //   this.points=""
-          //   this.successMessage = 'Points Added Successfully!'
-          //   //console.log(response)
-          //  })
-          //  .catch(error => {
-          //      console.log(error.response)
-          //  })
+            this.adminUpdate(account)
+           .then(response => {
+            this.code=""
+            this.points=""
+            this.successMessage = 'Points Added Successfully!'
+            //console.log(response)
+           })
+           .catch(error => {
+               console.log(error.response)
+           })
+          }
+          else{
+            this.Update(account)
+           .then(response => {
+            this.code=""
+            this.points=""
+            this.successMessage = 'Points Added Successfully!'
+            //console.log(response)
+           })
+           .catch(error => {
+               console.log(error.response)
+           })
+          }
        },
     },
 //    created() {
 //          this.info()
 //    },
-//    computed:{
-//        ...mapGetters('profile', {userinfo: "userinfo"}),     
-//    },
+   computed:{
+      //  ...mapGetters('profile', {userinfo: "userinfo"}),     
+       ...mapGetters('auth', {
+        userinf: "userinf",
+        userroles: "userroles",
+      }),     
+   },
 })
 </script>

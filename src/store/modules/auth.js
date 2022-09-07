@@ -3,6 +3,8 @@ import axios from 'axios'
 export const auth ={
     namespaced: true,
     state: {
+      // user:Object,
+      // roles:Object,
       token: localStorage.getItem('access_token') || null,
       signedin:localStorage.getItem('access_token')?true:false
     },
@@ -10,19 +12,18 @@ export const auth ={
       loggedIn(state) {
         return state.token !== null
       },
-      user: state => state.user,
+      userinf: state => state.user,
+      userroles: state => state.roles,
     },
     mutations: {
-      retrieveToken(state, blb ) {
-        console.log()
-
-        // state.signedin=true
-
-         state.token = blb.token.token
-         state.user = blb.user.original.data
+      retrieveToken(state, userdata) {
+         state.signedin=true
+         state.token = userdata.token.token
+         state.user = userdata.user.original.data
+         state.roles = userdata.user.original.data.roles
+          // console.log(state.roles)
       },
       destroyToken(state) {
-
         state.token = null
         state.signedin=false
       },
@@ -36,15 +37,9 @@ export const auth ={
           })
             .then(response => {
                const token = response.data.data.token.token
-              //  const user  = response.data.data.user.original.data
-              //  console.log(response.data.data)
-              //  console.log(token)
-
-               
                localStorage.setItem('access_token', token)
                context.commit('retrieveToken', response.data.data)
                resolve(response.data.data)
-               //console.log(response);
               //  context.commit('retrieveToken', response)
             })
             .catch(error => {
