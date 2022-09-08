@@ -18,6 +18,7 @@ import {user} from "./modules/user"
 import {profile} from "./modules/profile"
 import {account} from "./modules/account"
 import {permission} from "./modules/permission"
+import {order} from "./modules/order"
 //Vue.use(Vuex)
 
 export default new Vuex.Store({
@@ -33,7 +34,8 @@ export default new Vuex.Store({
     user,
     profile,
     account,
-    permission
+    permission,
+    order,
   },
 })
 

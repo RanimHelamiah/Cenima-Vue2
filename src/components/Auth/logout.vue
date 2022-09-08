@@ -9,7 +9,7 @@ export default {
   created() {
     this.destroyToken()
       .then(response => {
-          console.log(response)
+          // console.log(response)
           this.$router.replace({ name: 'login' })
       })
       .catch(error => {

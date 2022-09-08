@@ -8,14 +8,16 @@ import Register from "../components/Auth/Register.vue";
 import Dashboard from "../views/Dashboard.vue";
 import timeindex from "../views/Admin/Time/index.vue";
 import timeedit from "../views/Admin/Time/edit.vue";
-import hallindex from "../views/Admin/Hall/index-hall.vue"
+import hallindex from "../views/Admin/Hall/index-hall.vue";
 import movieindex from "../views/Admin/Movie/index.vue";
+import indexusermovie from "../views/Admin/Movie/indexuser.vue";
 import createmovie from "../views/Admin/Movie/create-movie.vue";
 import editmovie from "../views/Admin/Movie/edit-movie.vue";
 import showmovie from "../views/Admin/Movie/show-movie.vue";
 import rolemanager from "../views/Admin/RolePer/rolemanager.vue";
 import price from "../views/Admin/Price/index-price.vue";
 import snackindex from "../views/Admin/Snack/index-snack.vue";
+import snackindexuser from "../views/Admin/Snack/snack-user.vue";
 import snackcreate from "../views/Admin/Snack/create-snack.vue";
 import snackedit from "../views/Admin/Snack/edit-snack.vue";
 import snackshow from "../views/Admin/Snack/show-snack.vue";
@@ -26,6 +28,8 @@ import myprofile from "../views/Admin/Profile/myprofile.vue";
 import editinformaition from "../views/Admin/Profile/editinformaition.vue";
 import changepassword from "../views/Admin/Profile/changepassword.vue";
 import distributor from "../views/Admin/distributor.vue";
+import indexorder from "../views/Order/orderd-order.vue";
+import approvedorder from "../views/Order/approved-order.vue";
 
 // Component Pages
 import Valert from "../views/components/alert.vue";
@@ -96,6 +100,17 @@ const routes = [
     },
   },
   {
+    path: "/Movie/indexusermovie",
+    name: "indexusermovie",
+    component: indexusermovie,
+    meta: { 
+      title: "indexusermovie" + appname,
+      requiresVisitor: true,
+      requiresAuth: true,
+
+    },
+  },
+  {
     path: "/Movie/create",
     name: "createmovie",
     component: createmovie,
@@ -161,6 +176,15 @@ const routes = [
     },
   },
   {
+    path: "/Snack/index/user",
+    name: "snackindexuser",
+    component: snackindexuser,
+    meta: { 
+      title: "snackindexuser " + appname,
+      requiresAuth: true,
+    },
+  },
+  {
     path: "/Snack/create",
     name: "createsnack",
     component: snackcreate,
@@ -190,12 +214,30 @@ const routes = [
     },
   },
   {
+    path: "/Order/orderd",
+    name: "indexorder",
+    component: indexorder,
+    meta: { 
+      title: "indexorder " + appname,
+      requiresAuth: true,
+    },
+  },
+  {
+    path: "/Order/approved",
+    name: "approvedorder",
+    component: approvedorder,
+    meta: { 
+      title: "approvedorder " + appname,
+      requiresAuth: true,
+    },
+  },
+  {
     path: "/User/index",
     name: "indexuser",
     component: indexuser,
     meta: { 
       title: "indexuser " + appname,
-      requiresAuth: true,
+      requiresAuth: false,
     },
   },
   {

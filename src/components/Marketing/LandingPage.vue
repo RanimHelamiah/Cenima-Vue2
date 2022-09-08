@@ -14,11 +14,16 @@
              </carousel-slide>
          </carousel>
     </div>
+    <div class="grid grid-rows-2">
+        <h1 class="bg-purple-200 text-purple-900 pt-4 pb-4 mb-8 flex justify-center font-bold">Now Showing Movies</h1>
+        <movieindexuser />
+    </div>
 </template>
 
 <script>
 import Carousel from '@/components/Carousel';
 import CarouselSlide from '@/components/CarouselSlide';
+import movieindexuser from "@/views/indexuser-movie.vue";
 export default {
     data(){
         return{
@@ -35,7 +40,7 @@ export default {
     computed : {
         slideLen(){
             return this.slides.length;
-        }
+        },
     },
     methods : {
         next() {
@@ -62,6 +67,7 @@ export default {
     components : {
         Carousel,
         CarouselSlide,
+        movieindexuser,
         
     },
 }
@@ -69,7 +75,7 @@ export default {
 
 <style scoped>
 img{
-    height:500px;
+    height:90%;
     width:100%;
 }
 </style>

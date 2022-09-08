@@ -7,6 +7,7 @@ export const movie ={
     namespaced: true,
     state: {
         movies:[],
+        movies1:[],
         movie:Object,
         genres:Object,
         halls:Object,
@@ -14,6 +15,7 @@ export const movie ={
     },
       getters: {
         allmovies: state => state.movies,
+        shmovies: state => state.movies1,
         editmovie: state => state.movie,
         showmovie: state => state.movie,
         allgenres:state =>state.genres,
@@ -22,6 +24,10 @@ export const movie ={
     },
     mutations: {
           index : (state, movies) => state.movies = movies,
+          indexuser : (state, movies1) => {
+             state.movies1 = movies1;
+            // console.log(movies1)
+          },
           create : (state,movies) => {
             state.movies = movies;
             state.halls = movies.halls;
@@ -55,7 +61,21 @@ export const movie ={
             axios.defaults.headers.common['Authorization'] = 'Bearer ' + localStorage.getItem('access_token')
               const response = await axios.get('/Movie')
               .then((response) => {
-                context.commit('index', response.data.data.data);
+                console.log(response.data.data)
+                context.commit('index', response.data.data);
+                this.loading = false;
+              })
+              .catch((error) => {
+                console.log(error);
+              });
+          },
+          async indexuser(context) {
+            axios.defaults.headers.common['Authorization'] = 'Bearer ' + localStorage.getItem('access_token')
+            this.loading = true;
+              const response = await axios.get('/Movie/indexuser')
+              // console.log(response)
+              .then((response) => {
+                context.commit('indexuser', response.data.data);
                 this.loading = false;
               })
               .catch((error) => {

@@ -73,7 +73,7 @@
                               </tr>
                           </thead>
                           <tbody class="text-purple-900 dark:text-gray-200 text-md font-light" 
-                            :key="user.id" v-for="user in allusers" >
+                            :key="user.id" v-for="user in allusers.data" >
                               <tr class="border-b border-gray-200 hover:bg-purple-500">
                                   <td class="py-3 px-6 text-left whitespace-nowrap">
                                       <div class="flex items-center">
@@ -117,6 +117,15 @@
                               </tr>
                           </tbody>
                       </table>
+                      <pagination :data="allusers"  @pagination-change-page="getusers" 
+                       class="text-purple-600 dark:text-purple-200 flex justify-center mt-4 pb-4 pl-8 pr-8 ">
+                        <template #prev-nav>
+                            <span class="pr-8">&lt; Previous</span>
+                        </template>
+                        <template #next-nav>
+                            <span class="pl-8">Next &gt;</span>
+                        </template>
+                    </pagination>
                   </div>
               </div>
           </div>
@@ -127,11 +136,14 @@
   <script>
     // @ is an alias to /src
     import AdminLayout from '@/Layouts/AdminLayout'
+    import LaravelVuePagination from "laravel-vue-pagination"
+    import axios from 'axios'
     import { mapGetters,mapActions } from 'vuex'
     export default {
       name: "indexuser",
       data(){
         return{
+        allusers:{},
         successMessage : "",
         isHidden: true,
         isHidden2: true,
@@ -139,10 +151,22 @@
       },
       components: {
       AdminLayout,
+      'Pagination': LaravelVuePagination,
       },
+    mounted() {
+        // Fetch initial results
+        this.getusers();
+    },
      methods:{
       ...mapActions('user',['index','deactivate','activate']),
       ...mapActions('role',['indexrole','grant','revoke']),
+        getusers(page = 1) {
+            this.index()
+                axios.get('/User?page=' + page)
+                    .then(response => {
+                        this.allusers = response.data.data;
+                    });
+        },
        gr(){
           //console.log(id)
           const ga= {
@@ -179,30 +203,30 @@
             })
         },
       
-      deactivated(user){
-          //console.log(id)
-        this.deactivate(user)
-          .then(response => {
-            this.$router.push({ name: 'indexuser' })
-            this.successMessage="user Dectivated Successfully!"
-          })
-          .catch(error => {
-              console.log(error)
-  
-          })
-      },
-      activated(user){
-          //console.log(user)
-        this.activate(user)
-          .then(response => {
-            this.$router.push({ name: 'indexuser' })
-            this.successMessage="user Activated Successfully!"
-          })
-          .catch(error => {
-              console.log(error)
-  
-          })
-      },
+        deactivated(user){
+            //console.log(id)
+            this.deactivate(user)
+            .then(response => {
+                this.$router.push({ name: 'indexuser' })
+                this.successMessage="user Dectivated Successfully!"
+            })
+            .catch(error => {
+                console.log(error)
+    
+            })
+        },
+        activated(user){
+            //console.log(user)
+            this.activate(user)
+            .then(response => {
+                this.$router.push({ name: 'indexuser' })
+                this.successMessage="user Activated Successfully!"
+            })
+            .catch(error => {
+                console.log(error)
+    
+            })
+        },
       
      },
       created() {

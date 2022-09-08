@@ -7,15 +7,21 @@ export const snack ={
     namespaced: true,
     state: {
         snacks:[],
+        snacks1:[],
         snack:Object,
     },
       getters: {
         allsnacks: state => state.snacks,
+        snackuser: state => state.snacks1,
         showsnack: state => state.snack,
       },
 
     mutations: {
           index : (state, snacks) => state.snacks = snacks,
+          indexuser : (state, snacks1) => {
+            state.snacks1 = snacks1;
+           // console.log(snacks1)
+         },
           store : (state, snack) => state.snacks.push(snack),
           show: (state, snack) => {
             state.snack = snack;
@@ -45,13 +51,26 @@ export const snack ={
             axios.defaults.headers.common['Authorization'] = 'Bearer ' + localStorage.getItem('access_token')
               const response = await axios.get('/Snack')
               .then((response) => {
-                context.commit('index', response.data.data.data);
+                context.commit('index', response.data.data);
                 this.loading = false;
               })
               .catch((error) => {
                 console.log(error);
               });
                //console.log(response.data.data.data);
+          },
+          async indexuser(context) {
+            axios.defaults.headers.common['Authorization'] = 'Bearer ' + localStorage.getItem('access_token')
+            this.loading = true;
+              const response = await axios.get('/Snack/indexuser')
+              // console.log(response)
+              .then((response) => {
+                context.commit('indexuser', response.data.data);
+                this.loading = false;
+              })
+              .catch((error) => {
+                console.log(error);
+              });
           },
           async store( context, createsnack) {
             // console.log(snack);

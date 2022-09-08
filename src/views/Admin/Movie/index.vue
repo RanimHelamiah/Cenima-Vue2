@@ -25,7 +25,7 @@
                             </tr>
                         </thead>
                        <tbody class="text-purple-900 dark:text-gray-200 text-md font-light" 
-                          :key="movie.id" v-for="movie in allmovies" >
+                          :key="movie.id" v-for="movie in allmovies.data" >
                           <!-- // v-for="(post, index) in posts" :key="index"> -->
                             <tr class="border-b border-gray-200 hover:bg-purple-500">
                                 <td class="py-3 px-6 text-left whitespace-nowrap">
@@ -79,16 +79,15 @@
                             </tr>
                         </tbody>
                     </table>
-                    <!-- <Pagination :data="allmovies" @pagination-change-page="getmovies" class="mt-4 bg-green-900" /> -->
-                    
-                    <!-- <pagination :data="allmovies">
+                    <pagination :data="allmovies"  @pagination-change-page="getmovies" 
+                    class="text-purple-600 dark:text-purple-200 flex justify-center mt-4 pb-4 pl-8 pr-8 ">
                         <template #prev-nav>
-                            <span>&lt; Previous</span>
+                            <span class="pr-8">&lt; Previous</span>
                         </template>
                         <template #next-nav>
-                            <span>Next &gt;</span>
+                            <span class="pl-8">Next &gt;</span>
                         </template>
-                    </pagination> -->
+                    </pagination>
                 </div>
             </div>
         </div>
@@ -100,16 +99,17 @@
   // @ is an alias to /src
   import AdminLayout from '@/Layouts/AdminLayout'
   import { mapGetters,mapActions } from 'vuex'
-//   import LaravelVuePagination from "laravel-vue-pagination";
+  import LaravelVuePagination from "laravel-vue-pagination";
   import axios from 'axios'
   export default {
     name: "movieindex",
     components: {
     AdminLayout,
-    // LaravelVuePagination,
+    'Pagination': LaravelVuePagination,
    },
    data(){
     return{
+        allmovies:{},
        successMessage : "",
       }
    },
@@ -131,9 +131,10 @@
       },
     getmovies(page = 1) {
         // console.log('kdkk')
+        this.index()
             axios.get('/Movie?page=' + page)
                 .then(response => {
-                    this.allmovies = response.data;
+                    this.allmovies = response.data.data;
                 });
         },
     
