@@ -25,7 +25,7 @@
                               </tr>
                           </thead>
                           <tbody class="text-purple-900 dark:text-gray-200 text-md font-light" 
-                            :key="snack.id" v-for="snack in allsnacks" >
+                            :key="snack.id" v-for="snack in allsnacks.data" >
                               <tr class="border-b border-gray-200 hover:bg-purple-500">
                                   <td class="py-3 px-6 text-left whitespace-nowrap">
                                       <div class="flex items-center">
@@ -84,6 +84,15 @@
                               </tr>
                           </tbody>
                       </table>
+                    <pagination :data="allsnacks"  @pagination-change-page="getsnacks" 
+                      class="text-purple-600 dark:text-purple-200 flex justify-center mt-4 pb-4 pl-8 pr-8 ">
+                        <template #prev-nav>
+                            <span class="pr-8">&lt; Previous</span>
+                        </template>
+                        <template #next-nav>
+                            <span class="pl-8">Next &gt;</span>
+                        </template>
+                    </pagination>
                   </div>
               </div>
           </div>
@@ -94,20 +103,35 @@
   <script>
     // @ is an alias to /src
     import AdminLayout from '@/Layouts/AdminLayout'
+    import LaravelVuePagination from "laravel-vue-pagination"
+    import axios from 'axios'
     import { mapGetters,mapActions } from 'vuex'
     export default {
       name: "snackindex",
       data(){
         return{
+        allsnacks:{},
         successMessage : "",
         }
       },
       components: {
       AdminLayout,
+     'Pagination': LaravelVuePagination,
       },
-  
+      mounted() {
+            // Fetch initial results
+            this.getsnacks();
+      }, 
      methods:{
       ...mapActions('snack',['index','deactivate','activate']),
+     getsnacks(page = 1) {
+        // console.log('kdkk')
+        this.index()
+            axios.get('/Snack?page=' + page)
+                .then(response => {
+                    this.allsnacks = response.data.data;
+                });
+        },
       deactivated(snack){
           //console.log(id)
         this.deactivate(snack)

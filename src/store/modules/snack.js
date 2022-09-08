@@ -45,7 +45,7 @@ export const snack ={
             axios.defaults.headers.common['Authorization'] = 'Bearer ' + localStorage.getItem('access_token')
               const response = await axios.get('/Snack')
               .then((response) => {
-                context.commit('index', response.data.data.data);
+                context.commit('index', response.data.data);
                 this.loading = false;
               })
               .catch((error) => {

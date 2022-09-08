@@ -79,13 +79,19 @@
                 to="/Movie/index"
                 class="w-full text-left block rounded-md p-3 hover:bg-purple-200 dark:hover:bg-violet-500
               text-purple-700 dark:text-gray-200">
-                Now showing
+                All Movies
+              </router-link>
+              <router-link
+                to="/Movie/indexusermovie"
+                class="w-full text-left block rounded-md p-3 hover:bg-purple-200 dark:hover:bg-violet-500 text-purple-700 dark:text-gray-200"
+              >
+                Now Showing 
               </router-link>
               <router-link
                 to="/component/"
                 class="w-full text-left block rounded-md p-3 hover:bg-purple-200 dark:hover:bg-violet-500 text-purple-700 dark:text-gray-200"
               >
-                Up Comingcli 
+                Up Coming 
               </router-link>
               
             </template>

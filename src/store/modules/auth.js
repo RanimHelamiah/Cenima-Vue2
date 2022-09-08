@@ -3,8 +3,8 @@ import axios from 'axios'
 export const auth ={
     namespaced: true,
     state: {
-      // user:Object,
-      // roles:Object,
+      user:Object,
+      roles:Object,
       token: localStorage.getItem('access_token') || null,
       signedin:localStorage.getItem('access_token')?true:false
     },
@@ -17,10 +17,10 @@ export const auth ={
     },
     mutations: {
       retrieveToken(state, userdata) {
-         state.signedin=true
-         state.token = userdata.token.token
-         state.user = userdata.user.original.data
-         state.roles = userdata.user.original.data.roles
+         state.signedin=true;
+         state.token = userdata.token.token;
+         state.user = userdata.user.original.data;
+         state.roles = userdata.user.original.data.roles;
           // console.log(state.roles)
       },
       destroyToken(state) {

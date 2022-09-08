@@ -37,18 +37,18 @@ export const user ={
           async index(context) {
                axios.defaults.headers.common['Authorization'] = 'Bearer ' + localStorage.getItem('access_token')
               const response = await axios.get('/User');
-                //console.log(response);
+                // console.log(response.data.data);
               context.commit('index', response.data.data);
           },
           async activate( context, user) {
             const response = await axios.get('/User/activate/'+user.id);
             context.commit('activate', response.data.data);
-            console.log(response.data.data);
+            // console.log(response.data.data);
          },
           async deactivate( context, user) {
             const response = await axios.get('/User/deactivate/'+user.id);
             context.commit('deactivate', response.data.data);
-            console.log(response.data.data);
+            // console.log(response.data.data);
          },
          
     },

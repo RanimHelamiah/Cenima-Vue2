@@ -73,7 +73,7 @@ export default {
     
   .car{
     width:100%;
-    height:500px;
+    height:850px;
      position: relative;
      overflow: hidden;
  }

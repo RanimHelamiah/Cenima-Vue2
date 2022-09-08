@@ -8,8 +8,9 @@ import Register from "../components/Auth/Register.vue";
 import Dashboard from "../views/Dashboard.vue";
 import timeindex from "../views/Admin/Time/index.vue";
 import timeedit from "../views/Admin/Time/edit.vue";
-import hallindex from "../views/Admin/Hall/index-hall.vue"
+import hallindex from "../views/Admin/Hall/index-hall.vue";
 import movieindex from "../views/Admin/Movie/index.vue";
+import indexusermovie from "../views/Admin/Movie/indexuser.vue";
 import createmovie from "../views/Admin/Movie/create-movie.vue";
 import editmovie from "../views/Admin/Movie/edit-movie.vue";
 import showmovie from "../views/Admin/Movie/show-movie.vue";
@@ -95,6 +96,17 @@ const routes = [
     meta: { 
       title: "movieindex " + appname,
       requiresAuth: true,
+    },
+  },
+  {
+    path: "/Movie/indexusermovie",
+    name: "indexusermovie",
+    component: indexusermovie,
+    meta: { 
+      title: "indexusermovie" + appname,
+      requiresVisitor: true,
+      requiresAuth: true,
+
     },
   },
   {
@@ -215,7 +227,7 @@ const routes = [
     component: indexuser,
     meta: { 
       title: "indexuser " + appname,
-      requiresAuth: true,
+      requiresAuth: false,
     },
   },
   {
