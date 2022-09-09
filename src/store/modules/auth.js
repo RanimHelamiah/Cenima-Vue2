@@ -21,7 +21,9 @@ export const auth ={
          state.token = userdata.token.token;
          state.user = userdata.user.original.data;
          state.roles = userdata.user.original.data.roles;
-          // console.log(state.roles)
+          console.log(state.roles)
+         //console.log(userinf)
+
       },
       destroyToken(state) {
         state.token = null

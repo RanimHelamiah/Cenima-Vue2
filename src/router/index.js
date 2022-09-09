@@ -17,6 +17,7 @@ import showmovie from "../views/Admin/Movie/show-movie.vue";
 import rolemanager from "../views/Admin/RolePer/rolemanager.vue";
 import price from "../views/Admin/Price/index-price.vue";
 import snackindex from "../views/Admin/Snack/index-snack.vue";
+import snackindexuser from "../views/Admin/Snack/snack-user.vue";
 import snackcreate from "../views/Admin/Snack/create-snack.vue";
 import snackedit from "../views/Admin/Snack/edit-snack.vue";
 import snackshow from "../views/Admin/Snack/show-snack.vue";
@@ -171,6 +172,15 @@ const routes = [
     component: snackindex,
     meta: { 
       title: "snackindex " + appname,
+      requiresAuth: true,
+    },
+  },
+  {
+    path: "/Snack/index/user",
+    name: "snackindexuser",
+    component: snackindexuser,
+    meta: { 
+      title: "snackindexuser " + appname,
       requiresAuth: true,
     },
   },

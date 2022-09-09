@@ -1,6 +1,6 @@
 <template>
   <div id="app" >
-   <div class="ma flex-auto overflow-auto h-screen bg-gray-200" id="body-scroll" >
+   <div class="ma flex-auto overflow-auto h-screen bg-purple-200 dark:bg-purple-900" id="body-scroll" >
       <ul class="nav" v-if="!loggedIn">
         <router-link to="/">
             <li v-if="!loggedIn">
@@ -71,18 +71,17 @@ export default {
     padding: 18px 18px;
     margin: 0;
     justify-content: flex-end;
-    background: rgb(228, 225, 228);
+    background: rgb(236, 213, 236);
     border-bottom: 2px solid rgb(45, 2, 56);
     margin-bottom: 24px;
   }
   .nav li {
     color:rgb(45, 2, 56);
     padding: 0 25px;
-    font-size: 14px;
+    font-size: 16px;
     font-weight: 600;
-    letter-spacing: .1rem;
+    letter-spacing: .1.5rem;
     text-decoration: none;
-    text-transform: uppercase;
   }
   /* // Auth Pages */
   label {

@@ -1,6 +1,5 @@
 <template>
     <AdminLayout>
-      {{this.userroles}}
       <div v-if="successMessage" class="success-message text-purple-900 darek:text-gray-100">{{ successMessage }}</div>
       <div class="flex justify-center m-4 mt-12 max-h-screen container  item-center px-6 mx-auto">
        <div class="w-3/4 md:w-full lg:w-7/12 mx-auto md:mx-0">
@@ -57,7 +56,6 @@
 
 <script>
 import { mapGetters,mapActions } from 'vuex'
-import { auth } from "@/store/modules/auth"
 import AdminLayout from '@/Layouts/AdminLayout.vue';
 
 export default {
@@ -66,58 +64,58 @@ export default {
       AdminLayout
    },
    
-   data() {
+  data() {
         return {
             code:"",
             points:"",
             successMessage:""
         }
     },
-   methods:{
-     ...mapActions('account',['Update','adminUpdate']),
-     edit(){
-            const account = {
-                'code': this.code,
-                'points': this.points,
-            }
-            const index = this.userroles.find(t => t.name === 'Admin');
-            if(index !== -1) {
-              this.adminUpdate(account)
-              .then(response => {
-                this.code=""
-                this.points=""
-                this.successMessage = 'Points Added Successfully!'
-                //console.log(response)
-              })
-              .catch(error => {
-                  console.log(error.response)
-              })
-            }
-              else{
-                this.Update(account)
-                .then(response => {
-                  this.code=""
-                  this.points=""
-                  this.successMessage = 'Points Added Successfully!'
-                  //console.log(response)
-                })
-                .catch(error => {
-                    console.log(error.response)
-                })
-              }
-            }      
-       },
+  computed:mapGetters('profile', {userinfo: "userinfo" }),
+  methods:{
+    ...mapActions('account',['Update','adminUpdate']),
+    ...mapActions('profile',['info']),
+    edit(){
+        const account = {
+            'code': this.code,
+            'points': this.points,
+        }
+        let userroles = this.userinfo.roles;
+        let is_admin = userroles.find(role => role.name == 'Admin')
+        if(is_admin)
+        {
+          this.adminUpdate(account)
+          .then(response => {
+            this.code=""
+            this.points=""
+            this.successMessage = 'Points Added Successfully!'
+            console.log(response)
+          })
+          .catch(error => {
+              console.log(error.response)
+          })
+        }
+        else{
+          this.Update(account)
+            .then(response => {
+              this.code=""
+              this.points=""
+              this.successMessage = 'Points Added Successfully!'
+              console.log(response)
+            })
+            .catch(error => {
+                console.log(error.response)
+            })
+          }
+          this.code=""
+          this.points=""
+        }      
+    },
     
-//    created() {
-//          this.info()
-//    },
-   computed:{
-      //  ...mapGetters('profile', {userinfo: "userinfo"}),     
-       ...mapGetters('auth', {
-        userinf: "userinf",
-        userroles: "userroles",
-      }),     
-   }
+    created() {
+        this.info()
+    },
+   
   }
   
 </script>

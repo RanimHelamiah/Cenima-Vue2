@@ -58,6 +58,17 @@
           </router-link>
         </div>
         <div class="item mt-3">
+          <router-link :to="{name: 'snackindexuser'}">
+            <button
+              class="text-purple-800 dark:text-gray-100 bg-transparent hover:bg-purple-100 dark:hover:bg-violet-500 w-full flex text-left rounded-md box-border p-3"
+            >
+              <span class="mr-3 text-2xl text-gray-900 dark:text-gray-100"><Icon class="mt-2" icon="bi:person-circle" /></span>
+              <span class="w-full"> Snack User </span>
+              <span class="box-border mt-1 text-gray-500"> </span>
+            </button>
+          </router-link>
+        </div>
+        <div class="item mt-3">
           <router-link to="/Role/index">
             <button
               class="text-purple-800 dark:text-gray-100 bg-transparent hover:bg-purple-100 dark:hover:bg-violet-500 w-full flex text-left rounded-md box-border p-3"
