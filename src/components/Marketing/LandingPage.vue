@@ -1,5 +1,5 @@
 <template>
-     <div class="app flex-center m-4">
+     <div class="app flex-center m-4 mb-1">
          <carousel class="car"
            @next="next"
            @prev="prev"
@@ -14,8 +14,8 @@
              </carousel-slide>
          </carousel>
     </div>
-    <div class="grid grid-rows-2">
-        <h1 class="bg-purple-200 text-purple-900 pt-4 pb-4 mb-8 flex justify-center font-bold">Now Showing Movies</h1>
+    <div >
+        <h1 class="bg-purple-300 text-purple-900 p-4 text-3xl flex justify-center font-bold">Now Showing Movies</h1>
         <movieindexuser />
     </div>
 </template>
@@ -28,9 +28,9 @@ export default {
     data(){
         return{
             slides:[
-                '/images/1.jpg',
                 '/images/2.png',
-                '/images/3.jpg',
+                '/images/4.png',
+                '/images/3.png',
             ],
             
             visibleSlide:0,

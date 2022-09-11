@@ -9,6 +9,11 @@
                   hover:text-purple-400 outline-none exact ">Add New Movie</button>
             </router-link>
         </div>
+        <div class="flex justify-end bg-gray-100 dark:bg-purple-900 m-4 lg:flex  md:flex ">
+            <button name="Price"  class="bg-purple-200 dark:bg-violet-900 m-4 mr-8 text-3xl text-purple-900 dark:text-purple-200  
+            font-semibold p-3 border-2 border-purple-900 dark:border-purple-200 rounded-lg 
+            hover:text-purple-400 outline-none exact ">Add New Movie</button>
+        </div>
         <div class="overflow-x-auto min-w-screen min-h-screen bg-gray-100 flex m-4 justify-center bg-gray-100 
           dark:bg-purple-900 overflow-hidden lg:flex  md:flex ">
         
