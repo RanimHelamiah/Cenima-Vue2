@@ -52,7 +52,6 @@
                     </option>
                  </select>
 		        </div>
-                    
                 <div class="relative z-0 mb-6 w-full group">
 		          <select name="times[]" id="times[]" 
                    class="block py-2.5 px-0 w-full text-md text-purple-900 dark:text-purple-200 

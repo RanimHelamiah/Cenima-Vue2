@@ -3,7 +3,7 @@
         <div class="mt-20" v-for="movie in shmovies.data" :key="movie.id"> 
             <div class=" max-w-sm mx-20 mb-20 shadow-2xl  w-80 rounded-lg overflow-hidden shadow-lg bg-purple-300" 
             style="height:500px;">
-                <router-link to="/">
+                <router-link :to="{name: 'showmovie' , params:{movieid: movie.id}}">
                 <img class=" w-full" style="height:300px;width:200px;" alt="image" :src="`http://127.0.0.1:8000/${movie.image}`" />
                 <div class="px-6 py-1">
                 <div class="font-bold text-2xl text-purple-900 mt-8 mb-2">
