@@ -71,6 +71,8 @@ export default {
     login() {
         const user={email: this.email,password: this.password,}
         this.retrieveToken(user)
+      //   let userroles = this.userinfo.roles;
+      //   let is_user = userroles.find(role => role.name == 'Admin')
         this.$router.push({ name: 'Dashboard'})
       }
     }

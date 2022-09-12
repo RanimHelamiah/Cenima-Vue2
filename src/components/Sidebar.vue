@@ -57,7 +57,7 @@
             </button>
           </router-link>
         </div>
-        <div class="item mt-3">
+        <div class="item mt-3" >
           <router-link :to="{name: 'snackindexuser'}">
             <button
               class="text-purple-800 dark:text-gray-100 bg-transparent hover:bg-purple-100 dark:hover:bg-violet-500 w-full flex text-left rounded-md box-border p-3"
@@ -120,17 +120,6 @@
         </router-link>
       </div>
       <div class="item mt-3">
-        <router-link to="/Price/index">
-          <button
-            class="text-purple-800 dark:text-gray-100 bg-transparent hover:bg-purple-100 dark:hover:bg-violet-500 w-full flex text-left rounded-md box-border p-3"
-          >
-            <span class="mr-3 text-xl text-gray-900 dark:text-gray-100"><Icon  icon="bi:currency-dollar" class="mt-2"/></span>
-            <span class="w-full"> Price </span>
-            <span class="box-border mt-1 text-gray-500"> </span>
-          </button>
-        </router-link>
-      </div>
-      <div class="item mt-3">
         <router-link to="/Account/edit">
           <button
             class="text-purple-800 dark:text-gray-100 bg-transparent hover:bg-purple-100 dark:hover:bg-violet-500 w-full flex text-left rounded-md box-border p-3"
@@ -183,7 +172,7 @@
       <p class="font-medium text-purple-400 mt-4 dark:text-gray-400">
         Vendor
       </p>
-      <div class="item mt-3">
+      <div class="item mt-3" v-if="chechAuth('Vendor','snack_accees')">
         <router-link :to="{name : 'indexsnack'}">
           <button
             class="text-purple-800 dark:text-gray-100 bg-transparent hover:bg-purple-100 dark:hover:bg-violet-500 w-full flex text-left rounded-md box-border p-3"
@@ -213,18 +202,43 @@
   }
 </style> -->
 <script>
-  import { Icon } from "@iconify/vue";
-  import MenuAccordion from "./MenuAccordion.vue";
-  export default {
-    components: {
-      Icon,
-      MenuAccordion,
+import { Icon } from "@iconify/vue";
+import { mapActions, mapGetters } from "vuex";
+import MenuAccordion from "./MenuAccordion.vue";
+export default {
+  components: {
+    Icon,
+    MenuAccordion,
+  },
+  methods: {
+    ...mapActions('profile',['info']),
+    sidebarToggle: function () {
+      document.querySelector(".flex-sidebar").classList.add("hidden");
     },
-    methods: {
-      sidebarToggle: function () {
-        document.querySelector(".flex-sidebar").classList.add("hidden");
-      },
+    chechAuth(authRole, permi){
+      let userroles = this.userinfo.roles;
+      console.log(userroles);
+
+      // let selectedRole = userroles.find(role => role.name == 'Admin')
+      // console.log(selectedRole);
+
+      // if(selectedRole)
+      // {
+      //   let checkPermission = selectedRole.permissions.find(permission => permission.name == permi)
+      //   if(checkPermission){
+      //     return true;
+      //   }
+      //   return false;
+      // }
+      // return false;
     },
-    mounted() {},
-  };
+  },
+  created() {
+    this.info()
+  },
+  // created() {
+    
+  // },
+  computed:mapGetters('profile', {userinfo: "userinfo"}),
+};
 </script>

@@ -30,6 +30,8 @@ import changepassword from "../views/Admin/Profile/changepassword.vue";
 import distributor from "../views/Admin/distributor.vue";
 import indexorder from "../views/Order/orderd-order.vue";
 import approvedorder from "../views/Order/approved-order.vue";
+import stepone from "../views/Ticket/stepone.vue";
+import steptwo from "../views/Ticket/steptwo.vue";
 
 // Component Pages
 import Valert from "../views/components/alert.vue";
@@ -286,6 +288,26 @@ const routes = [
       title:  appname,
       requiresAuth: true,
      }
+  },
+  {
+    path: "/Ticket/stepone/:movieid",
+    name: "stepone",
+    component: stepone,
+    props: true,
+    meta: { 
+      title: "stepone " + appname,
+      requiresAuth: true,
+    },
+  },
+  {
+    path: "/Ticket/steptwo/:movieid",
+    name: "steptwo",
+    component: steptwo,
+    props: true,
+    meta: { 
+      title: "steptwo " + appname,
+      requiresAuth: true,
+    },
   },
   {
     path: '/login',

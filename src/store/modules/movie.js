@@ -61,7 +61,7 @@ export const movie ={
             axios.defaults.headers.common['Authorization'] = 'Bearer ' + localStorage.getItem('access_token')
               const response = await axios.get('/Movie')
               .then((response) => {
-                console.log(response.data.data)
+                //console.log(response.data.data)
                 context.commit('index', response.data.data);
                 this.loading = false;
               })

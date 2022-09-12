@@ -1,22 +1,23 @@
 <template>
-  <AdminLayout>
-    <div class="overflow-x-auto" >
-        <div class="min-w-screen min-h-screen bg-gray-100 flex m-4 justify-center bg-gray-100 
-          dark:bg-purple-900 overflow-hidden">
-            <div class="w-full item-center lg:w-5/6 sm:w-5/6 bg-purple-300  dark:bg-purple-800 shadow-md rounded my-6">
-                  <form @submit.prevent="priceupdate(allprices)" class="m-16 ml-48 ">
-                      <input type="number" name="price" v-model="allprices.ticket_price"
-		                  class="lg:w-2/6 sm:w-5/6 mr-8 mb-8 bg-purple-200 font-bold dark:bg-violet-900 text-3xl text-purple-900 dark:text-purple-200  
-                      font-semibold p-4 border-2 border-purple-900 dark:border-purple-200 rounded-lg"/>
-                      <button @click="priceupdate(allprices)" name="update"  
-	   		 	             class="lg:w-1/6 sm:w-3/6 bg-purple-200 dark:bg-violet-900 text-3xl text-purple-900 dark:text-purple-200  
-                        font-semibold pl-8 pr-8  border-2 border-purple-900 dark:border-purple-200 rounded-lg 
-                       hover:text-purple-400 outline-none exact p-4">Update</button>
-                  </form>
-            </div>
-        </div>
-    </div>
- </AdminLayout>
+    <p class="pl-8 pr-8 bg-purple-200 dark:bg-violet-900 m-4 ml-8 text-2xl text-purple-900 dark:text-purple-200  
+            font-semibold p-3  border-2 border-purple-900 dark:border-purple-200 rounded-lg 
+            outline-none exact" v-if="isHidden">
+             Ticket Price: {{allprices.ticket_price}} Points</p>
+    <button name="edit" class="bg-purple-200 dark:bg-violet-900 m-4 mr-8 text-2xl text-purple-900 dark:text-purple-200  
+            font-semibold p-3 border-2 border-purple-900 dark:border-purple-200 rounded-lg 
+            hover:text-purple-400 outline-none exact " @click="isHidden = !isHidden"
+            v-if="isHidden">
+            Edit Price</button>
+    <form @submit.prevent="priceupdate(allprices)" class="mb-2 mt-4" v-if="!isHidden">
+        <div v-if="successMessage" class="success-message text-purple-900 darek:text-gray-100">{{ successMessage }}</div>
+        <input  type="number" name="price" style="width:250px;border-radius:6px;
+		      border-width:2px;border-color:#340b56;background-color:lightgray;padding-left:30px;color: #340b56;"
+         v-model="allprices.ticket_price" >
+        <button type="submit" @click="priceupdate(allprices)" name="update" class="text-white bg-violet-400 hover:bg-violet-200"
+         style="width:250px;height:40px; color:#340b56;border-radius:6px;
+          border-width:2px; border-color:#340b56;font-size:20px;padding-left:4px;
+          padding-right:4px; margin-left:20px;">Update</button>
+     </form>
 </template>
 
 <script>
@@ -28,16 +29,24 @@
     components: {
     AdminLayout,
    },
+   data(){
+    return{
+      isHidden: true,
+    }
+   },
    methods:{
     ...mapActions('price',['index','update']),
     priceupdate(allprices) {
           this.update(allprices);
+          this.isHidden=true;
         },  
    },
     created() {
         this.index()
 
     },
-    computed:mapGetters('price', {allprices: "allprices"}),
+    computed:{
+    ...mapGetters('price', {allprices: "allprices"}),
+    },
 }
   </script>

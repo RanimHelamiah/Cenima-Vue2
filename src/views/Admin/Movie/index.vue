@@ -2,7 +2,10 @@
   <AdminLayout>
     <div class="overflow-x-auto ">
        <div v-if="successMessage" class="success-message text-purple-900 darek:text-gray-100">{{ successMessage }}</div>
-       <div class="flex justify-end bg-gray-100 dark:bg-purple-900 m-4 lg:flex  md:flex ">
+       <div class="flex justify-between bg-gray-100 dark:bg-purple-900 m-4 lg:flex  md:flex ">
+            <div class="flex pl-8">
+                <price />
+            </div>
             <router-link to="/Movie/create">
                 <button name="new"  class="bg-purple-200 dark:bg-violet-900 m-4 mr-8 text-3xl text-purple-900 dark:text-purple-200  
                   font-semibold p-3 border-2 border-purple-900 dark:border-purple-200 rounded-lg 
@@ -100,16 +103,18 @@
   import AdminLayout from '@/Layouts/AdminLayout'
   import { mapGetters,mapActions } from 'vuex'
   import LaravelVuePagination from "laravel-vue-pagination";
+  import price from '../Price/index-price.vue';
   import axios from 'axios'
   export default {
     name: "movieindex",
     components: {
     AdminLayout,
+    price,
     'Pagination': LaravelVuePagination,
    },
    data(){
     return{
-        allmovies:{},
+       allmovies:{},
        successMessage : "",
       }
    },
@@ -118,6 +123,7 @@
         this.getmovies();
     },
    methods:{
+    ...mapActions('price',['index']),
     ...mapActions('movie',['index','delete']),
     destroy(id) {
        this.delete(id)
@@ -142,6 +148,9 @@
     created() {
         this.index()
     },
-    computed:mapGetters('movie',{allmovies : "allmovies"}),
+    computed:{
+        ...mapGetters('movie',{allmovies : "allmovies"}),
+        ...mapGetters('price', {allprices: "allprices"}),
+    },
 }
 </script>
