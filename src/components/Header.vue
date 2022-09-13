@@ -131,9 +131,11 @@
               </li>
             </ul>
             <div class="py-1">
-              <li class="block py-2 px-4 text-sm text-purple-700 dark:text-gray-200 hover:bg-purple-800 hover:text-white" >
-                <router-link to="/logout">Logout</router-link></li>
-        
+                <router-link to="/logout">
+                  <li class="block py-2 px-4 text-sm text-purple-700 dark:text-gray-200 hover:bg-purple-800 hover:text-white" >
+                  Logout
+                  </li>
+                </router-link>
             </div>
           </div>
         </transition>

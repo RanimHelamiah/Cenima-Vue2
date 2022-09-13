@@ -1,9 +1,12 @@
 <template>
-    
+    <div class="flex justify-between">
         <button  @click="isHidden=!isHidden"  class="flex justufy-start pl-40 text-purple-900
-        font-bold  bg-purple-300 p-2 w-full  rounden-lg" style="border-bottom-width:3px;border-color: indigo;">
+        font-bold pt-1 w-1/2  rounden-lg" >
             Cart
         </button>
+    <headeruser />
+
+    </div>
         <div id="cart-sidebar" class="min-h-screen bg-purple-300 w-1/3" v-if="!isHidden">
             <!-- <button @click="isHidden=true">
                 <i class="fa-solid fa-xmark fa-xl"></i>
@@ -110,16 +113,18 @@
 </template>
 
 <script>
-    // @ is an alias to /src
-    import { mapGetters,mapActions } from 'vuex'
-    import LaravelVuePagination from "laravel-vue-pagination";
-    import axios from 'axios'
-    import { ref, computed, onMounted } from "vue"
+// @ is an alias to /src
+import { mapGetters,mapActions } from 'vuex'
+import LaravelVuePagination from "laravel-vue-pagination";
+import axios from 'axios'
+import { ref, computed, onMounted } from "vue"
+import headeruser from "../../../components/headeruser.vue"
     export default {
       name: "snackindexuser",
       components: {
-      'Pagination': LaravelVuePagination,
-     },
+    "Pagination": LaravelVuePagination,
+    headeruser
+},
      data(){
         return{
             cart:[],

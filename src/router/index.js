@@ -32,6 +32,9 @@ import indexorder from "../views/Order/orderd-order.vue";
 import approvedorder from "../views/Order/approved-order.vue";
 import stepone from "../views/Ticket/stepone.vue";
 import steptwo from "../views/Ticket/steptwo.vue";
+import movie from "../views/User/movie.vue";
+import mytickets from "../views/User/mytickets.vue";
+import myorders from "../views/User/myorders.vue";
 
 // Component Pages
 import Valert from "../views/components/alert.vue";
@@ -107,6 +110,17 @@ const routes = [
     component: indexusermovie,
     meta: { 
       title: "indexusermovie" + appname,
+      requiresVisitor: true,
+      requiresAuth: true,
+
+    },
+  },
+  {
+    path: "/Movie",
+    name: "movie",
+    component: movie,
+    meta: { 
+      title: "movie" + appname,
       requiresVisitor: true,
       requiresAuth: true,
 
@@ -212,6 +226,24 @@ const routes = [
     props: true,
     meta: { 
       title: "snackshow " + appname,
+      requiresAuth: true,
+    },
+  },
+  {
+    path: "/User/mytickets",
+    name: "mytickets",
+    component: mytickets,
+    meta: { 
+      title: "mytickets " + appname,
+      requiresAuth: true,
+    },
+  },
+  {
+    path: "/User/myorders",
+    name: "myorders",
+    component: myorders,
+    meta: { 
+      title: "myorders " + appname,
       requiresAuth: true,
     },
   },

@@ -7,22 +7,26 @@ export const profile ={
     namespaced: true,
     state: {
         user:[],
+        ticket:Object,
+        order:Object,
        // user:Object,
       },
 
       getters: {
         userinfo: state => state.user,
+        myticket:state => state.ticket,
+        myorder:state => state.order,
       },
 
     mutations: {
           info : (state, user) => {
             state.user = user;
           },
-          myOrders : (state, user) => {
-            state.user = user;
+          myOrders : (state, order) => {
+            state.order = order;
           },
-          mytickets : (state, user) => {
-            state.user = user;
+          mytickets : (state, ticket) => {
+            state.ticket = ticket;
           },
           editprofile: (state, user) => { 
             const index =state.user ;
@@ -51,7 +55,7 @@ export const profile ={
           async mytickets(context) {
             axios.defaults.headers.common['Authorization'] = 'Bearer ' + localStorage.getItem('access_token')
           const response = await axios.get('/Profile/mytickets');
-            //console.log(response);
+            //console.log(response.data.data);
           context.commit('mytickets', response.data.data);
           },  
           async editprofile( context ,data) {

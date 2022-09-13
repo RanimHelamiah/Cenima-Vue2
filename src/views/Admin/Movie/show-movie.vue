@@ -6,16 +6,14 @@
             <div class="w-full " >
                     <div class="font-bold text-4xl text-purple-900 dark:text-purple-200 mb-8">
                         {{showmovie.name}}<br>
-                    <span class="inline-block rounded-full  px-4 py-2 text-sm font-bold text-purple-900 dark:bg-purple-200 mt-8" style="width:120px;height:35px; border-width:1px;border-color:lightgray;">
+                    <span class="inline-block rounded-full mb-4  px-4 py-2 text-sm font-bold text-purple-900 dark:bg-purple-200 mt-8" style="width:120px;height:35px; border-width:1px;border-color:lightgray;">
                         <strong>Type:</strong> 
                         {{showmovie.type}}
                     </span><br />
-                    <strong class="inline-block rounded-full  px-4 py-2 text-sm font-bold text-purple-900 dark:bg-purple-200 mt-8" style="width:120px;height:35px; border-width:1px;border-color:lightgray;">
-                        Genres:
-                    </strong>
-                    <span class="inline-block rounded-full  px-4 py-2 text-sm font-bold text-purple-900 dark:bg-purple-200 mt-8"
-                     style="width:120px;height:35px; border-width:1px;border-color:lightgray;" v-for="genre in showmovie.genres" :key="genre.id">
-                     {{genre.name}}                   
+                    <span class="rounded-full  px-4 py-3  font-bold text-purple-900 dark:bg-purple-200 mt-8"
+                     style="width:120px;height:35px; border-width:1px;border-color:lightgray;font-size:18px;"
+                      v-for="genre in showmovie.genres" :key="genre.id">
+                     Genres: {{genre.name}}                   
                     </span>
                     </div>
                 <div class="w-full mb-8" style="font-size:24px;">

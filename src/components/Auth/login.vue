@@ -61,20 +61,33 @@ export default {
       password: '',
     }
   },
-  computed:mapGetters('auth', ["loggedIn"]),
+  computed:{
+   ...mapGetters('auth', ["loggedIn","userroles","userinfo","getuser"]),
+  },
 
 
   methods: {
-    
     ...mapActions('auth',['retrieveToken']),
-  
     login() {
         const user={email: this.email,password: this.password,}
         this.retrieveToken(user)
-      //   let userroles = this.userinfo.roles;
-      //   let is_user = userroles.find(role => role.name == 'Admin')
-        this.$router.push({ name: 'Dashboard'})
-      }
+        let is_user = this.getuser.roles.find(role => role.name == 'User')
+        let is_admin = this.getuser.roles.find(role => role.name == 'Admin')
+      //   let is_vendor = this.getuser.roles.find(role => role.name == 'Vendor')
+      //   let is_reception = this.getuser.roles.find(role => role.name == 'Reception')
+        if(is_user){
+            this.$router.push({ name: 'movie'})
+        }
+        else if(is_admin){
+           this.$router.push({ name: 'Dashboard'})
+        }
+      //   else if(is_reception){
+      //      this.$router.push({ name: 'movieindex'})
+      //   }
+      //   else if(is_vendor){
+      //       this.$router.push({ name: 'snackindex'})
+      //   }
+        }
     }
   }
 </script>
