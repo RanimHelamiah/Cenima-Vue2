@@ -51,7 +51,7 @@
                                                 </svg>
                                             </button>
                                           <button :key="order.id"
-                                              @click="received(order)"  class="text-xs text-white bg-sky-600 rounded-full w-6 mr-2 transform
+                                              @click="received(order)"  class="text-xs text-white bg-sky-600 rounded-full w-14 mr-2 transform
                                                hover:text-purple-300 hover:scale-110">
                                                Received
                                           </button>

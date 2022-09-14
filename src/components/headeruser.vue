@@ -35,13 +35,13 @@
         </button>
       </div>
       <div class="mr-8 flex">
-        <router-link to="/Snack/index/user">
+        <!-- <router-link to="/Snack/index/user">
             <button class="text-purple-900 dark:text-purple-100 rounded-lg p-1 pl-4 pr-4 
             hover:bg-violet-400 dark:hover:bg-violet-400" >
                 Snack
             </button>
-        </router-link>
-        <router-link to="/Movie">
+        </router-link> -->
+        <!-- <router-link to="/Movie">
             <button class="text-purple-900 dark:text-purple-100 rounded-lg p-1 pl-4 pr-4 
             hover:bg-violet-400 dark:hover:bg-violet-400" >
                 Movie
@@ -65,13 +65,13 @@
             hover:bg-violet-400 dark:hover:bg-violet-400" >
                 My Orders
             </button>
-        </router-link>
-        <router-link to="/logout">
+        </router-link> -->
+        <!-- <router-link to="/logout">
           <button class="text-purple-900 dark:text-purple-100 rounded-lg p-1 pl-4 pr-4 
             hover:bg-violet-400 dark:hover:bg-violet-400" >
             Logout
             </button>
-        </router-link>
+        </router-link> -->
         <router-link to="/">
             <button class="text-purple-900 dark:text-purple-100 rounded-lg p-1 pl-4 pr-4 
             hover:bg-violet-400 dark:hover:bg-violet-400" >

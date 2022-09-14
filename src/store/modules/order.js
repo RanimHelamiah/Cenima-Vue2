@@ -53,8 +53,11 @@ export const order ={
             // console.log(response.data.data.data);
             context.commit('approved', response.data.data.data);
         },
-          async store( context, order) {
-              const response = await axios.post('/Order/store', order);
+          async store( context, data) {
+              const response = await axios.post('/Order', {
+                order_items: data.order_items,
+                total_price: data.total_price,
+              });
               // console.log(response.data.data);
               context.commit('store', response.data.data);
           },

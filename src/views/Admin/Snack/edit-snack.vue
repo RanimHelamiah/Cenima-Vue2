@@ -64,14 +64,8 @@
           ...mapActions('snack',['show','update']),
           snackupdate(showsnack){
               this.update(showsnack)
-              .then(response => {
               this.successMessage = 'Updated Successfully!'
               this.$router.push({ name: 'indexsnack', params: { dataSuccessMessage: this.successMessage } })
-               //console.log(response)
-              })
-              .catch(error => {
-                  console.log(error.response)
-              })
           },
       },
       created(){

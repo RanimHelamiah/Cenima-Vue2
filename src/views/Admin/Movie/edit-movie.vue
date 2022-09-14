@@ -145,14 +145,8 @@ export default {
         ...mapActions('movie',['edit','update']),
         movieupdate(editmovie){
             this.update(editmovie)
-            .then(response => {
             this.successMessage = 'Updated Successfully!'
             this.$router.push({ name: 'movieindex', params: { dataSuccessMessage: this.successMessage } })
-             //console.log(response)
-            })
-            .catch(error => {
-                console.log(error.response)
-            })
         },
     },
     

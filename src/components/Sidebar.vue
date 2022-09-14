@@ -3,6 +3,7 @@
   import { mapActions, mapGetters } from "vuex";
   import MenuAccordion from "./MenuAccordion.vue";
   export default {
+    name:'sidebar',
     components: {
       Icon,
       MenuAccordion,
@@ -67,7 +68,7 @@
     <div class="sidebar-list p-4 mt-4 dark:bg-purple-800">
       <p class="font-medium text-purple-400 dark:text-gray-400">Menu</p>
       <div class="wrap-item mt-5 dark:text-gray-300">
-        <div class="item" v-if="chechAuth('Admin')">
+        <div class="item" >
           <router-link
             to="/Dashboard"
             exact
@@ -88,7 +89,7 @@
             </button>
           </router-link>
         </div>
-        <div class="item mt-3" v-if="chechAuth('Admin')">
+        <!-- <div class="item mt-3" >
           <router-link to="/Role/index">
             <button
               class="text-purple-800 dark:text-gray-100 bg-transparent hover:bg-purple-100 dark:hover:bg-violet-500 w-full flex text-left rounded-md box-border p-3"
@@ -97,9 +98,9 @@
               <span class="w-full"> Role</span>
               <span class="box-border mt-1 text-gray-500"> </span>
             </button>
-          </router-link>
+          </router-link> -->
        </div>
-        <div class="item mt-3 " v-if="chechAuth(['Admin','Reception'])">
+        <!-- <div class="item mt-3 ">
           <menu-accordion>
             <template v-slot:icon>
               <Icon class="dark:text-gray-100 mt-2" icon="bi:film" />
@@ -127,8 +128,8 @@
               
             </template>
           </menu-accordion>
-        </div>
-        <div class="item mt-3" v-if="chechAuth('Admin')">
+        </div> -->
+        <div class="item mt-3" >
         <router-link to="/Time/index">
           <button
             class="text-purple-800 dark:text-gray-100 bg-transparent hover:bg-purple-100 dark:hover:bg-violet-500 w-full flex text-left rounded-md box-border p-3"
@@ -139,7 +140,7 @@
           </button>
         </router-link>
       </div>
-      <div class="item mt-3" v-if="chechAuth(['Admin','Distributor'])">
+      <div class="item mt-3">
         <router-link to="/Account/edit">
           <button
             class="text-purple-800 dark:text-gray-100 bg-transparent hover:bg-purple-100 dark:hover:bg-violet-500 w-full flex text-left rounded-md box-border p-3"
@@ -150,7 +151,7 @@
           </button>
         </router-link>
       </div>
-      <div class="item mt-3" v-if="chechAuth('Admin')">
+      <div class="item mt-3" >
         <router-link to="/Hall/index">
           <button
             class="text-purple-800 dark:text-gray-100 bg-transparent hover:bg-purple-100 dark:hover:bg-violet-500 w-full flex text-left rounded-md box-border p-3"
@@ -163,7 +164,7 @@
       </div>
       
       </div>
-      <div v-if="chechAuth('Admin')">
+      <div >
       <p class="font-medium text-purple-400 mt-4 dark:text-gray-400">
         Users
       </p>
@@ -191,7 +192,7 @@
       </div>
 
       </div>
-      <div v-if="chechAuth('Vendor')">
+      <!-- <div >
         <router-link :to="{name: 'snackindexuser'}" >
           <button 
             class="text-purple-800 dark:text-gray-100 bg-transparent hover:bg-purple-100 dark:hover:bg-violet-500 w-full flex text-left rounded-md box-border p-3"
@@ -223,8 +224,8 @@
             </button>
           </router-link>
         </div>
-      </div>
-    </div>
+      </div> -->
+    <!-- </div> -->
   </nav>
 </template>
 <!-- <style>

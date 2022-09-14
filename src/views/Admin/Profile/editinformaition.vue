@@ -87,15 +87,9 @@ export default ({
               phone: userinfo.phone,
             }
           this.editprofile(user)
-          .then(response => {
-            // this.successMessage = 'Information Updated Successfully!'
             this.$router.push({ name: 'myprofile'})
-            console.log(response)
-          })
-          .catch(error => {
             this.name=""
             this.phone=""
-          })
         },
      },
     created() {
