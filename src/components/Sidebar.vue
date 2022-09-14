@@ -1,6 +1,39 @@
+<script>
+  import { Icon } from "@iconify/vue";
+  import { mapActions, mapGetters } from "vuex";
+  import MenuAccordion from "./MenuAccordion.vue";
+  export default {
+    name:'sidebar',
+    components: {
+      Icon,
+      MenuAccordion,
+    },
+    methods: {
+      ...mapActions('profile',['info']),
+      sidebarToggle: function () {
+        document.querySelector(".flex-sidebar").classList.add("hidden");
+      },
+      chechAuth(authRole){
+        let selectedRole = this.userinfo.roles.find(role => role.name == authRole)
+        // console.log(this.userinfo)
+        if(selectedRole)
+        {
+            return true;
+        }
+        return false;
+      },
+    },
+    created() {
+      this.info()
+    },
+    computed:mapGetters('auth', ["isVendor","isReception", "isAdmin","isDistributer"]),
+
+  }
+</script>
+
 <template>
   <!-- sidebar -->
-  <nav class="sidebar bg-gray-100 dark:bg-purple-800">
+  <nav class="sidebar bg-gray-100 dark:bg-purple-800 min-h-screen">
     <!-- sidebar head -->
     <div class="sidebar-head p-4">
       <router-link to="/" exact>
@@ -36,7 +69,7 @@
     <div class="sidebar-list p-4 mt-4 dark:bg-purple-800">
       <p class="font-medium text-purple-400 dark:text-gray-400">Menu</p>
       <div class="wrap-item mt-5 dark:text-gray-300">
-        <div class="item">
+        <div class="item" >
           <router-link
             to="/Dashboard"
             exact
@@ -57,18 +90,7 @@
             </button>
           </router-link>
         </div>
-        <div class="item mt-3" >
-          <router-link :to="{name: 'snackindexuser'}">
-            <button
-              class="text-purple-800 dark:text-gray-100 bg-transparent hover:bg-purple-100 dark:hover:bg-violet-500 w-full flex text-left rounded-md box-border p-3"
-            >
-              <span class="mr-3 text-2xl text-gray-900 dark:text-gray-100"><Icon class="mt-2" icon="bi:person-circle" /></span>
-              <span class="w-full"> Snack User </span>
-              <span class="box-border mt-1 text-gray-500"> </span>
-            </button>
-          </router-link>
-        </div>
-        <div class="item mt-3">
+        <div class="item mt-3" v-if="this.isAdmin">
           <router-link to="/Role/index">
             <button
               class="text-purple-800 dark:text-gray-100 bg-transparent hover:bg-purple-100 dark:hover:bg-violet-500 w-full flex text-left rounded-md box-border p-3"
@@ -79,7 +101,7 @@
             </button>
           </router-link>
        </div>
-        <div class="item mt-3 ">
+        <div class="item mt-3" v-if="this.isAdmin || this.isReception">
           <menu-accordion>
             <template v-slot:icon>
               <Icon class="dark:text-gray-100 mt-2" icon="bi:film" />
@@ -108,7 +130,7 @@
             </template>
           </menu-accordion>
         </div>
-        <div class="item mt-3">
+        <div class="item mt-3" v-if="this.isAdmin">
         <router-link to="/Time/index">
           <button
             class="text-purple-800 dark:text-gray-100 bg-transparent hover:bg-purple-100 dark:hover:bg-violet-500 w-full flex text-left rounded-md box-border p-3"
@@ -119,7 +141,7 @@
           </button>
         </router-link>
       </div>
-      <div class="item mt-3">
+      <div class="item mt-3" v-if="this.isAdmin || this.isDistributer">
         <router-link to="/Account/edit">
           <button
             class="text-purple-800 dark:text-gray-100 bg-transparent hover:bg-purple-100 dark:hover:bg-violet-500 w-full flex text-left rounded-md box-border p-3"
@@ -130,8 +152,8 @@
           </button>
         </router-link>
       </div>
-      <div class="item mt-3">
-        <router-link to="/Hall/index">
+      <div class="item mt-3" v-if="this.isAdmin">
+        <router-link to="/Hall/index"  >
           <button
             class="text-purple-800 dark:text-gray-100 bg-transparent hover:bg-purple-100 dark:hover:bg-violet-500 w-full flex text-left rounded-md box-border p-3"
           >
@@ -143,6 +165,7 @@
       </div>
       
       </div>
+      <div v-if="this.isAdmin">
       <p class="font-medium text-purple-400 mt-4 dark:text-gray-400">
         Users
       </p>
@@ -151,48 +174,55 @@
           <button
             class="text-purple-800 dark:text-gray-100 bg-transparent hover:bg-purple-100 dark:hover:bg-violet-500 w-full flex text-left rounded-md box-border p-3"
           >
-            <span class="mr-3 text-xl text-gray-900 dark:text-gray-100"><Icon class="mt-2" icon="bi:file-person" /></span>
+            <span class="mr-3 text-xl text-gray-900 dark:text-gray-100"><Icon class="mt-2" icon="bi:people" /></span>
             <span class="w-full"> Employee </span>
             <span class="box-border mt-1 text-gray-500"> </span>
           </button>
         </router-link>
       </div>
-
       <div class="item mt-3">
         <router-link :to="{name : 'indexuser'}">
           <button
             class="text-purple-800 dark:text-gray-100 bg-transparent hover:bg-purple-100 dark:hover:bg-violet-500 w-full flex text-left rounded-md box-border p-3"
           >
-            <span class="mr-3 text-xl text-gray-900 dark:text-gray-100"><Icon class="mt-2" icon="bi:person-video2" /></span>
+            <span class="mr-3 text-xl text-gray-900 dark:text-gray-100"><Icon class="mt-2" icon="bi:people" /></span>
             <span class="w-full"> End User </span>
             <span class="box-border mt-1 text-gray-500"> </span>
           </button>
         </router-link>
       </div>
-      <p class="font-medium text-purple-400 mt-4 dark:text-gray-400">
-        Vendor
-      </p>
-      <div class="item mt-3" v-if="chechAuth('Vendor','snack_accees')">
-        <router-link :to="{name : 'indexsnack'}">
-          <button
-            class="text-purple-800 dark:text-gray-100 bg-transparent hover:bg-purple-100 dark:hover:bg-violet-500 w-full flex text-left rounded-md box-border p-3"
-          >
-            <span class="mr-3 text-xl text-gray-900 dark:text-gray-100"><Icon class="mt-2" icon="bi:file-person" /></span>
-            <span class="w-full"> Snacks </span>
-            <span class="box-border mt-1 text-gray-500"> </span>
-          </button>
-        </router-link>
+
       </div>
-      <div class="item mt-3">
-        <router-link :to="{name : 'indexorder'}">
-          <button
-            class="text-purple-800 dark:text-gray-100 bg-transparent hover:bg-purple-100 dark:hover:bg-violet-500 w-full flex text-left rounded-md box-border p-3"
-          >
-            <span class="mr-3 text-xl text-gray-900 dark:text-gray-100"><Icon class="mt-2" icon="bi:file-person" /></span>
-            <span class="w-full"> Orders </span>
+      <div v-if="this.isVendor">
+        <router-link :to="{name: 'snackindexuser'}" >
+          <button class="text-purple-800 dark:text-gray-100 bg-transparent hover:bg-purple-100 dark:hover:bg-violet-500 w-full flex text-left rounded-md box-border p-3">
+            <span class="mr-3 text-2xl text-gray-900 dark:text-gray-100" ><Icon class="mt-2" icon="bi:cup-straw" /></span>
+            <span class="w-full"> Snack User </span>
             <span class="box-border mt-1 text-gray-500"> </span>
           </button>
         </router-link>
+        <div class="item mt-3" >
+          <router-link :to="{name : 'indexsnack'}">
+            <button
+              class="text-purple-800 dark:text-gray-100 bg-transparent hover:bg-purple-100 dark:hover:bg-violet-500 w-full flex text-left rounded-md box-border p-3"
+            >
+              <span class="mr-3 text-2xl text-gray-900 dark:text-gray-100"><Icon class="mt-2" icon="bi:cup-straw" /></span>
+              <span class="w-full"> Snacks </span>
+              <span class="box-border mt-1 text-gray-500"> </span>
+            </button>
+          </router-link>
+        </div>
+        <div class="item mt-3">
+          <router-link :to="{name : 'indexorder'}">
+            <button
+              class="text-purple-800 dark:text-gray-100 bg-transparent hover:bg-purple-100 dark:hover:bg-violet-500 w-full flex text-left rounded-md box-border p-3"
+            >
+              <span class="mr-3 text-2xl text-gray-900 dark:text-gray-100"><Icon class="mt-2" icon="bi:cart-plus-fill" /></span>
+              <span class="w-full"> Orders </span>
+              <span class="box-border mt-1 text-gray-500"> </span>
+            </button>
+          </router-link>
+        </div>
       </div>
     </div>
   </nav>
@@ -201,44 +231,4 @@
   .active {
   }
 </style> -->
-<script>
-import { Icon } from "@iconify/vue";
-import { mapActions, mapGetters } from "vuex";
-import MenuAccordion from "./MenuAccordion.vue";
-export default {
-  components: {
-    Icon,
-    MenuAccordion,
-  },
-  methods: {
-    ...mapActions('profile',['info']),
-    sidebarToggle: function () {
-      document.querySelector(".flex-sidebar").classList.add("hidden");
-    },
-    chechAuth(authRole, permi){
-      let userroles = this.userinfo.roles;
-      console.log(userroles);
 
-      // let selectedRole = userroles.find(role => role.name == 'Admin')
-      // console.log(selectedRole);
-
-      // if(selectedRole)
-      // {
-      //   let checkPermission = selectedRole.permissions.find(permission => permission.name == permi)
-      //   if(checkPermission){
-      //     return true;
-      //   }
-      //   return false;
-      // }
-      // return false;
-    },
-  },
-  created() {
-    this.info()
-  },
-  // created() {
-    
-  // },
-  computed:mapGetters('profile', {userinfo: "userinfo"}),
-};
-</script>

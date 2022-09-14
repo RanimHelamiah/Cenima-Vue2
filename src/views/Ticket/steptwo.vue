@@ -1,4 +1,4 @@
-<template>{{availableseates}} 
+<template> 
     <div class="flex justify-center m-4 mt-40  max-h-screen container  item-center px-6 mx-auto
      ">
     <div class="w-3/4 p-20 md:w-full lg:w-7/12 mx-auto md:mx-0 border border-4 border-purple-900 rounded-xl p-4 bg-violet-200 ">
@@ -62,14 +62,12 @@ export default {
                'glasses' : 1,
            }
 
-           console.log(ticket);
+        //    console.log(ticket);
            this.store(ticket)
-        //    this.$router.push({ name: 'steptwo'})
-        //    this.date=""
-        //    this.starttime=""
-        //    this.movie_id=""
-        //    this.hall=""
-        //    this.seats=""
+           this.$router.push({ name: 'mytickets'})
+           this.date=""
+           this.starttime=""
+           this.seats=""
 
        }
     },
