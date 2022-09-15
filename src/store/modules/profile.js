@@ -7,6 +7,7 @@ export const profile ={
     namespaced: true,
     state: {
         user:[],
+        acc:[],
         ticket:Object,
         order:Object,
        // user:Object,
@@ -16,11 +17,13 @@ export const profile ={
         userinfo: state => state.user,
         myticket:state => state.ticket,
         myorder:state => state.order,
+        myaccount:state => state.acc,
       },
 
     mutations: {
           info : (state, user) => {
             state.user = user;
+            state.acc = user.account;
           },
           myOrders : (state, order) => {
             state.order = order;

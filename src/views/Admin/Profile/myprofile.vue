@@ -1,7 +1,7 @@
 <template>
   <headeruser />
   <div class="mt-4 rounded-lgbg-purple-200 dark:bg-purple-900 flex flex-wrap max-h-screen items-center justify-center">
-    <div class="container max-h-screen min-w-xl bg-purple-100 rounded dark:bg-purple-800 shadow-lg transform duration-200 easy-in-out mt-10 m-12">
+    <div class="container min-h-screen/2 min-w-xl bg-purple-100 rounded dark:bg-purple-800 shadow-lg transform duration-200 easy-in-out mt-10 m-12">
       <div class="h-2/4 sm:h-64 overflow-hidden bg-violet-700 dark:bg-violet-300">
           
       </div>  
@@ -38,8 +38,8 @@
           <h2 class="text-3xl font-bold text-violet-800 dark:text-purple-200">
             Account Info 
           </h2>
-          <p class="font-semibold mt-8 text-violet-800 dark:text-purple-200">Code : *2deF12 {{accountshow.code}} *</p>
-          <p class="font-semibold mt-8 text-violet-800 dark:text-purple-200">Points : * 1000.00{{accountshow.points}} *</p>
+          <p class="font-semibold mt-8 text-violet-800 dark:text-purple-200">Code : * {{myaccount.code}} *</p>
+          <p class="font-semibold mt-8 text-violet-800 dark:text-purple-200">Points :* {{myaccount.points}} *</p>
           <div class="mt-12">
             <router-link to="/Profile/changepassword">
               <button class="p-1  rounded-md hover:bg-rose-500 bg-rose-700 " 
@@ -76,15 +76,12 @@
       },
       methods:{
         ...mapActions('profile',['info']),
-        ...mapActions('account',['show']),
       },
       created() {
             this.info()
-            this.show()
       },
       computed:{
-          ...mapGetters('profile', {userinfo: "userinfo",}),     
-          ...mapGetters('account',{accountshow: "accountshow"}),
+          ...mapGetters('profile', {userinfo: "userinfo",myaccount:"myaccount"}),     
       },
   }
 </script>

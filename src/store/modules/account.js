@@ -37,7 +37,7 @@ export const account ={
     actions:{
           async show(context) {
                axios.defaults.headers.common['Authorization'] = 'Bearer ' + localStorage.getItem('access_token')
-              const response = await axios.get('/Account/'+accountshow);
+              const response = await axios.get('/Account/');
                 //console.log(response);
               context.commit('show', response.data.data);
           }, 

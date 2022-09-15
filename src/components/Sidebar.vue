@@ -1,6 +1,6 @@
 <script>
   import { Icon } from "@iconify/vue";
-  import { mapActions, mapGetters } from "vuex";
+  import { mapGetters } from "vuex";
   import MenuAccordion from "./MenuAccordion.vue";
   export default {
     name:'sidebar',
@@ -9,13 +9,9 @@
       MenuAccordion,
     },
     methods: {
-      ...mapActions('profile',['info']),
       sidebarToggle: function () {
         document.querySelector(".flex-sidebar").classList.add("hidden");
       },
-    },
-    created() {
-      this.info()
     },
     computed:mapGetters('auth', ["isVendor","isReception", "isAdmin","isDistributer"]),
 

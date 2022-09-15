@@ -97,12 +97,6 @@
       Button,
       MenuAccordion,
       },
-      data() {
-          return{
-  
-          }
-          
-      },
       computed:mapGetters('auth', ["isVendor","isReception", "isAdmin","isDistributer","isUser"]),
       mounted() {
         var themeToggleDarkIcon = document.getElementById(

@@ -71,14 +71,15 @@ export default {
     login() {
          const user={email: this.email,password: this.password,}
          this.retrieveToken(user)
-         console.log(this.isAdmin);
          
-         if("true" == this.isAdmin){
-            this.$router.push({ name: 'Dashboard'})
-         }
-         if("true" == this.isUser){
-            this.$router.push({ name: 'movie'})
-         } 
+         // console.log(this.isAdmin);
+         
+         // if("true" == this.isAdmin){
+         //    this.$router.push({ name: 'Dashboard'})
+         // }
+         // if("true" == this.isUser){
+         //    this.$router.push({ name: 'movie'})
+         // } 
       }
     }
   }

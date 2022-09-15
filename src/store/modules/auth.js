@@ -10,7 +10,7 @@ export const auth ={
       isReception: localStorage.getItem('isReception')=="true"? true : false,
       isDistributer: localStorage.getItem('isDistributer')=="true"? true : false,
       isUser: localStorage.getItem('isUser')=="true"? true : false,
-      signedin:localStorage.getItem('access_token')||false,
+      signedin:localStorage.getItem('access_token')?true:false,
     },
     getters: {
       loggedIn(state) {
@@ -25,6 +25,7 @@ export const auth ={
     },
     mutations: {
       retrieveToken(state, userdata) {
+        state.signedin=true;
         let userroles = userdata.user.original.data.roles;
         let roles = userroles.map(role => role.name);
 
@@ -58,7 +59,6 @@ export const auth ={
         }else{
           localStorage.setItem('isUser', false)
         }
-        state.signedin=true;
         state.token = userdata.token.token;
       },
 

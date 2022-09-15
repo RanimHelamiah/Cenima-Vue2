@@ -35,7 +35,7 @@ router.beforeEach((to, from, next) => {
       }
     } else if (to.matched.some(record => record.meta.requiresVisitor)) {
       if (auth.state.signedin ) {
-        if (auth.state.isUser === true){
+         if (auth.state.isUser === true){
           next({
             name: 'movie',
           })
