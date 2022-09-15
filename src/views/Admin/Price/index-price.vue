@@ -39,6 +39,9 @@
         isHidden: true,
       }
     },
+    computed:{
+      ...mapGetters('price', {allprices: "allprices"}),
+    },
     methods:{
       ...mapActions('price',['index','update']),
       priceupdate(allprices) {
@@ -48,9 +51,6 @@
     },
     created() {
         this.index()
-    },
-    computed:{
-      ...mapGetters('price', {allprices: "allprices"}),
     },
   }
 </script>

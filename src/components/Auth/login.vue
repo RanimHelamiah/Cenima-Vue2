@@ -62,7 +62,7 @@ export default {
     }
   },
   computed:{
-   ...mapGetters('auth', ["loggedIn","isUser", "isAdmin","getuser"]),
+   ...mapGetters('auth', ["loggedIn","isUser", "isAdmin"]),
   },
 
 
@@ -72,8 +72,6 @@ export default {
          const user={email: this.email,password: this.password,}
          this.retrieveToken(user)
          console.log(this.isAdmin);
-         // console.log(this.isUser);
-
          
          if("true" == this.isAdmin){
             this.$router.push({ name: 'Dashboard'})

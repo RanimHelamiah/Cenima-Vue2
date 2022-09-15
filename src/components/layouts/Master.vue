@@ -24,7 +24,6 @@
 </template>
 
 <script>
-import Scrollbar from "smooth-scrollbar";
 import { mapGetters } from 'vuex';
 import login from "../Auth/login.vue";
 import logout from "../Auth/logout.vue";
@@ -33,17 +32,14 @@ import Register from "../Auth/Register.vue";
 import Button from "@/views/components/button.vue";
 
 export default {
- 
-  computed:
-    mapGetters('auth',["loggedIn"]),
+  computed:mapGetters('auth',["loggedIn"]),
   components:{
     login,
     logout,
     LandingPage,
     Register,
+  }
 }
-}
-
 </script>
 
 <style>
@@ -52,7 +48,6 @@ export default {
     margin: 0;
     padding: 0;
   }
-
   #app {
     font-family: 'Avenir', Helvetica, Arial, sans-serif;
     -webkit-font-smoothing: antialiased;

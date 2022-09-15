@@ -54,7 +54,6 @@
                                             @click="deactivated(time)"  class="text-xs text-white bg-sky-600 rounded-full w-6 mr-2 transform
                                              hover:text-purple-300 hover:scale-110">
                                              A
-                                             
                                         </button>
                                          <button 
                                             v-else-if="time.active==0"
@@ -62,8 +61,6 @@
                                              hover:text-purple-300 hover:scale-110">
                                              DA
                                         </button>
-                                       
-                                               
                                     </div>
                                 </td>
                             </tr>
@@ -78,49 +75,30 @@
 
 <script>
   // @ is an alias to /src
-  import AdminLayout from '@/Layouts/AdminLayout'
-  import { mapGetters,mapActions } from 'vuex'
-  import createtime from "@/views/Admin/Time/create.vue"
+  import AdminLayout from '@/Layouts/AdminLayout';
+  import { mapGetters,mapActions } from 'vuex';
+  import createtime from "@/views/Admin/Time/create.vue";
+
   export default {
     name: "timeindex",
     components: {
-    createtime,
-    AdminLayout,
-},
-
-   methods:{
-    ...mapActions('time',['index','deactivate','activate']),
-    deactivated(time){
-        //console.log(id)
-      this.deactivate(time)
-        .then(response => {
-            console.log(response)
-        })
-        .catch(error => {
-            console.log(error)
-
-        })
+        createtime,
+        AdminLayout,
     },
-    activated(time){
-        //console.log(time)
-      this.activate(time)
-        .then(response => {
-            console.log(response)
-        })
-        .catch(error => {
-            console.log(error)
-
-        })
+    computed:mapGetters('time', {alltimes: "alltimes"}),
+    methods:{
+        ...mapActions('time',['index','deactivate','activate']),
+        deactivated(time){
+        this.deactivate(time)
+        this.$router.push({ name: 'timeindex'})
+        },
+        activated(time){
+        this.activate(time)
+        this.$router.push({ name: 'timeindex'})
+        },
     },
-    
-   },
     created() {
         this.index()
-
     },
-    
-    computed:mapGetters('time', {alltimes: "alltimes"}),
-   
-    
 }
-  </script>
+</script>

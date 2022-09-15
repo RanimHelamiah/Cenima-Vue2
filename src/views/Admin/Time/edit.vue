@@ -14,7 +14,6 @@
             style="width:250px;height:40px; color:#340b56;border-radius:6px;
             border-width:2px; border-color:#340b56;font-size:20px;padding-left:4px;
             padding-right:4px; margin-left:20px;">Update</button>
-            
         </form>
         <div class="flex justify-center "> 
           <router-link :to="{ name: 'timeindex'}">
@@ -30,7 +29,6 @@
 <script>
 import AdminLayout from '@/Layouts/AdminLayout';
 import { mapActions ,mapGetters} from 'vuex';
-import { time } from '@/store/modules/time';
 
 export default {
     name: "edittime",
@@ -51,14 +49,12 @@ export default {
         ...mapActions('time',['update','edit']),
         timeupdate(edittime) {
           this.update(edittime);
+            this.$router.push({ name: 'timeindex'})
         }, 
-        
     }, 
     created() {
         this.edit(this.timeid)
-   },
+    },
     computed:mapGetters('time', {edittime: "edittime"}),   
 }
-
-
 </script>

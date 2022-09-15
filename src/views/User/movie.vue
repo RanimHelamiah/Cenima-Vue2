@@ -1,6 +1,6 @@
 <template>
     <headeruser />
-    <movieindexuser v-if="this.isUser"/>
+    <movieindexuser />
 </template>
 
 <script>
@@ -16,7 +16,7 @@ components:{
     movieindexuser,
 },
 computed:{
-   ...mapGetters('auth', ["loggedIn","isUser", "isAdmin","getuser"]),
+   ...mapGetters('auth', ["loggedIn","isUser", "isAdmin"]),
   },
 }
 </script>

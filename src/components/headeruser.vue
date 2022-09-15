@@ -1,5 +1,4 @@
 <template>
-    
   <header class="bg-purple-200 dark:bg-purple-800 p-2 border-b-2 dark:border-purple-700">
     <div class="wrap-header flex  items-center justify-between flex-wrap x">
       <div class="flex flex-no-shrink items-center">
@@ -34,14 +33,14 @@
           </svg>
         </button>
       </div>
-      <div class="mr-8 flex">
-        <!-- <router-link to="/Snack/index/user">
+      <div class="mr-8 flex" v-if="this.isUser">
+        <router-link to="/Snack/index/user">
             <button class="text-purple-900 dark:text-purple-100 rounded-lg p-1 pl-4 pr-4 
             hover:bg-violet-400 dark:hover:bg-violet-400" >
                 Snack
             </button>
-        </router-link> -->
-        <!-- <router-link to="/Movie">
+        </router-link>
+        <router-link to="/Movie">
             <button class="text-purple-900 dark:text-purple-100 rounded-lg p-1 pl-4 pr-4 
             hover:bg-violet-400 dark:hover:bg-violet-400" >
                 Movie
@@ -65,14 +64,16 @@
             hover:bg-violet-400 dark:hover:bg-violet-400" >
                 My Orders
             </button>
-        </router-link> -->
-        <!-- <router-link to="/logout">
+        </router-link>
+        <router-link to="/logout">
           <button class="text-purple-900 dark:text-purple-100 rounded-lg p-1 pl-4 pr-4 
             hover:bg-violet-400 dark:hover:bg-violet-400" >
             Logout
             </button>
-        </router-link> -->
-        <router-link to="/">
+        </router-link>
+      </div>
+      <div class="mr-8 flex" v-if="this.isAdmin || this.isReception || this.Vendor || this.isDistributer">
+        <router-link to="/" >
             <button class="text-purple-900 dark:text-purple-100 rounded-lg p-1 pl-4 pr-4 
             hover:bg-violet-400 dark:hover:bg-violet-400" >
                 Back
@@ -84,81 +85,72 @@
 </template>
 
 <script>
-    import { Icon } from "@iconify/vue";
-    import Button from '@/views/components/button.vue';
-    import { mapGetters,mapActions } from 'vuex'
-    import MenuAccordion from '@/components/MenuAccordion.vue';
-    export default {
-        name: "myprofile",
-        props:['dataSuccessMessage'],
-        components:{
-        Icon,
-        Button,
-        MenuAccordion,
-        },
-        data() {
-            return{
-    
-            }
-            
-        },
-        methods:{
-          ...mapActions('profile',['info']),
-         },
-        created() {
-              this.info()
-        },
-        computed:{
-            ...mapGetters('profile', {userinfo: "userinfo",}),     
-        },
-        mounted() {
-          var themeToggleDarkIcon = document.getElementById(
-            "theme-toggle-dark-icon"
-          );
-          var themeToggleLightIcon = document.getElementById(
-            "theme-toggle-light-icon"
-          );
-          // Change the icons inside the button based on previous settings
-          if (
-            localStorage.getItem("color-theme") === "dark" ||
-            !("color-theme" in localStorage)
-          ) {
-            document.documentElement.classList.add("dark");
-            themeToggleLightIcon.classList.remove("hidden");
-          } else {
-            document.documentElement.classList.remove("dark");
-            themeToggleDarkIcon.classList.remove("hidden");
+  import { Icon } from "@iconify/vue";
+  import Button from '@/views/components/button.vue';
+  import { mapGetters} from 'vuex'
+  import MenuAccordion from '@/components/MenuAccordion.vue';
+  export default {
+      name: "myprofile",
+      props:['dataSuccessMessage'],
+      components:{
+      Icon,
+      Button,
+      MenuAccordion,
+      },
+      data() {
+          return{
+  
           }
-          var themeToggleBtn = document.getElementById("theme-toggle");
-    
-          themeToggleBtn.addEventListener("click", function () {
-            // toggle icons inside button
-            themeToggleDarkIcon.classList.toggle("hidden");
-            themeToggleLightIcon.classList.toggle("hidden");
-    
-            // if set via local storage previously
-            if (localStorage.getItem("color-theme")) {
-              if (localStorage.getItem("color-theme") === "light") {
-                document.documentElement.classList.add("dark");
-                localStorage.setItem("color-theme", "dark");
-              } else {
-                document.documentElement.classList.remove("dark");
-                localStorage.setItem("color-theme", "light");
-              }
-    
-              // if NOT set via local storage previously
+          
+      },
+      computed:mapGetters('auth', ["isVendor","isReception", "isAdmin","isDistributer","isUser"]),
+      mounted() {
+        var themeToggleDarkIcon = document.getElementById(
+          "theme-toggle-dark-icon"
+        );
+        var themeToggleLightIcon = document.getElementById(
+          "theme-toggle-light-icon"
+        );
+        // Change the icons inside the button based on previous settings
+        if (
+          localStorage.getItem("color-theme") === "dark" ||
+          !("color-theme" in localStorage)
+        ) {
+          document.documentElement.classList.add("dark");
+          themeToggleLightIcon.classList.remove("hidden");
+        } else {
+          document.documentElement.classList.remove("dark");
+          themeToggleDarkIcon.classList.remove("hidden");
+        }
+        var themeToggleBtn = document.getElementById("theme-toggle");
+  
+        themeToggleBtn.addEventListener("click", function () {
+          // toggle icons inside button
+          themeToggleDarkIcon.classList.toggle("hidden");
+          themeToggleLightIcon.classList.toggle("hidden");
+  
+          // if set via local storage previously
+          if (localStorage.getItem("color-theme")) {
+            if (localStorage.getItem("color-theme") === "light") {
+              document.documentElement.classList.add("dark");
+              localStorage.setItem("color-theme", "dark");
             } else {
-              if (document.documentElement.classList.contains("dark")) {
-                document.documentElement.classList.remove("dark");
-                localStorage.setItem("color-theme", "light");
-              } else {
-                document.documentElement.classList.add("dark");
-                localStorage.setItem("color-theme", "dark");
-              }
+              document.documentElement.classList.remove("dark");
+              localStorage.setItem("color-theme", "light");
             }
-          });
-        },
-    
-    }
-    </script>
+  
+            // if NOT set via local storage previously
+          } else {
+            if (document.documentElement.classList.contains("dark")) {
+              document.documentElement.classList.remove("dark");
+              localStorage.setItem("color-theme", "light");
+            } else {
+              document.documentElement.classList.add("dark");
+              localStorage.setItem("color-theme", "dark");
+            }
+          }
+        });
+      },
+  }
+</script>
     

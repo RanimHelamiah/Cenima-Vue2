@@ -3,7 +3,7 @@
         <div class="overflow-x-auto ">
             <div v-if="successMessage" class="success-message text-purple-900 darek:text-gray-100">{{ successMessage }}</div>
             <div class="flex justify-between bg-gray-100 dark:bg-purple-900 m-4 lg:flex  md:flex ">
-                <div class="flex pl-8">
+                <div class="flex pl-8" v-if="this.isAdmin">
                     <price />
                 </div>
                 <router-link to="/Movie/create">
@@ -147,6 +147,7 @@
         computed:{
             ...mapGetters('movie',{allmovies : "allmovies"}),
             ...mapGetters('price', {allprices: "allprices"}),
+            ...mapGetters('auth', {isAdmin: "isAdmin"}),
         },
     }
 </script>

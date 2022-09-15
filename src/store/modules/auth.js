@@ -16,7 +16,6 @@ export const auth ={
       loggedIn(state) {
         return state.token  !== null;
       },
-      getuser: state=>state.userauth,
       isAdmin: state=>state.isAdmin,
       isVendor: state=>state.isVendor,
       isReception: state=>state.isReception,
@@ -61,7 +60,6 @@ export const auth ={
         }
         state.signedin=true;
         state.token = userdata.token.token;
-        state.userauth = userdata.user.original.data;
       },
 
       destroyToken(state) {
@@ -77,18 +75,13 @@ export const auth ={
             password: credentials.password,
           })
             .then(response => {
-              // console.log(response)
-                const token = response.data.data.token.token
-                localStorage.setItem('access_token', token)
-                const userauth = response.data.data.user.original.data
-                // console.log(user)
-                localStorage.setItem('user_info', userauth)
-               context.commit('retrieveToken', response.data.data)
-               resolve(response.data.data)
+              const token = response.data.data.token.token
+              localStorage.setItem('access_token', token)
+              context.commit('retrieveToken', response.data.data)
+              resolve(response.data.data)
             })
             .catch(error => {
-              //console.log(error)
-             reject(error)
+              reject(error)
             })
           })
       },
@@ -109,12 +102,10 @@ export const auth ={
               }
           })
             .then(response => {
-                  // console.log(response)
               resolve(response)
             })
           
             .catch(error => {
-                  // console.log(error)
               reject(error)
             })
 
@@ -129,12 +120,10 @@ export const auth ={
                     localStorage.removeItem('access_token')
                     context.commit('destroyToken')
                     resolve(response)
-                    //console.log(response);
                 })
                 .catch(error => {
                     localStorage.removeItem('access_token')
                     context.commit('destroyToken')
-                    //console.log(error.response)
                     reject(error)
                 })
             })

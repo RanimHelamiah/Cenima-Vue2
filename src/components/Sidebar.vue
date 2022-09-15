@@ -13,15 +13,6 @@
       sidebarToggle: function () {
         document.querySelector(".flex-sidebar").classList.add("hidden");
       },
-      chechAuth(authRole){
-        let selectedRole = this.userinfo.roles.find(role => role.name == authRole)
-        // console.log(this.userinfo)
-        if(selectedRole)
-        {
-            return true;
-        }
-        return false;
-      },
     },
     created() {
       this.info()
