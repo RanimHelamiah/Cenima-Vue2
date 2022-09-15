@@ -26,7 +26,8 @@
     created() {
       this.info()
     },
-    computed:mapGetters('profile', {userinfo: "userinfo"}),
+    computed:mapGetters('auth', ["isVendor","isReception", "isAdmin","isDistributer"]),
+
   }
 </script>
 
@@ -89,7 +90,7 @@
             </button>
           </router-link>
         </div>
-        <!-- <div class="item mt-3" >
+        <div class="item mt-3" v-if="this.isAdmin">
           <router-link to="/Role/index">
             <button
               class="text-purple-800 dark:text-gray-100 bg-transparent hover:bg-purple-100 dark:hover:bg-violet-500 w-full flex text-left rounded-md box-border p-3"
@@ -98,9 +99,9 @@
               <span class="w-full"> Role</span>
               <span class="box-border mt-1 text-gray-500"> </span>
             </button>
-          </router-link> -->
+          </router-link>
        </div>
-        <!-- <div class="item mt-3 ">
+        <div class="item mt-3" v-if="this.isAdmin || this.isReception">
           <menu-accordion>
             <template v-slot:icon>
               <Icon class="dark:text-gray-100 mt-2" icon="bi:film" />
@@ -128,8 +129,8 @@
               
             </template>
           </menu-accordion>
-        </div> -->
-        <div class="item mt-3" >
+        </div>
+        <div class="item mt-3" v-if="this.isAdmin">
         <router-link to="/Time/index">
           <button
             class="text-purple-800 dark:text-gray-100 bg-transparent hover:bg-purple-100 dark:hover:bg-violet-500 w-full flex text-left rounded-md box-border p-3"
@@ -140,7 +141,7 @@
           </button>
         </router-link>
       </div>
-      <div class="item mt-3">
+      <div class="item mt-3" v-if="this.isAdmin || this.isDistributer">
         <router-link to="/Account/edit">
           <button
             class="text-purple-800 dark:text-gray-100 bg-transparent hover:bg-purple-100 dark:hover:bg-violet-500 w-full flex text-left rounded-md box-border p-3"
@@ -151,8 +152,8 @@
           </button>
         </router-link>
       </div>
-      <div class="item mt-3" >
-        <router-link to="/Hall/index">
+      <div class="item mt-3" v-if="this.isAdmin">
+        <router-link to="/Hall/index"  >
           <button
             class="text-purple-800 dark:text-gray-100 bg-transparent hover:bg-purple-100 dark:hover:bg-violet-500 w-full flex text-left rounded-md box-border p-3"
           >
@@ -164,7 +165,7 @@
       </div>
       
       </div>
-      <div >
+      <div v-if="this.isAdmin">
       <p class="font-medium text-purple-400 mt-4 dark:text-gray-400">
         Users
       </p>
@@ -192,12 +193,10 @@
       </div>
 
       </div>
-      <!-- <div >
+      <div v-if="this.isVendor">
         <router-link :to="{name: 'snackindexuser'}" >
-          <button 
-            class="text-purple-800 dark:text-gray-100 bg-transparent hover:bg-purple-100 dark:hover:bg-violet-500 w-full flex text-left rounded-md box-border p-3"
-          >
-            <span class="mr-3 text-2xl text-gray-900 dark:text-gray-100"><Icon class="mt-2" icon="bi:cup-straw" /></span>
+          <button class="text-purple-800 dark:text-gray-100 bg-transparent hover:bg-purple-100 dark:hover:bg-violet-500 w-full flex text-left rounded-md box-border p-3">
+            <span class="mr-3 text-2xl text-gray-900 dark:text-gray-100" ><Icon class="mt-2" icon="bi:cup-straw" /></span>
             <span class="w-full"> Snack User </span>
             <span class="box-border mt-1 text-gray-500"> </span>
           </button>
@@ -224,8 +223,8 @@
             </button>
           </router-link>
         </div>
-      </div> -->
-    <!-- </div> -->
+      </div>
+    </div>
   </nav>
 </template>
 <!-- <style>

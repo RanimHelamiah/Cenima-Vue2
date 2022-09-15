@@ -62,23 +62,25 @@ export default {
     }
   },
   computed:{
-   ...mapGetters('auth', ["loggedIn","userroles","userinfo","getuser"]),
+   ...mapGetters('auth', ["loggedIn","isUser", "isAdmin","getuser"]),
   },
 
 
   methods: {
     ...mapActions('auth',['retrieveToken']),
     login() {
-        const user={email: this.email,password: this.password,}
-        this.retrieveToken(user)
-        let is_user = this.getuser.roles.find(role => role.name == 'User')
-        let is_admin = this.getuser.roles.find(role => role.name == 'Admin')
-        if(is_user){
+         const user={email: this.email,password: this.password,}
+         this.retrieveToken(user)
+         console.log(this.isAdmin);
+         // console.log(this.isUser);
+
+         
+         if("true" == this.isAdmin){
+            this.$router.push({ name: 'Dashboard'})
+         }
+         if("true" == this.isUser){
             this.$router.push({ name: 'movie'})
-        }
-        else{
-           this.$router.push({ name: 'Dashboard'})
-        }
+         } 
       }
     }
   }

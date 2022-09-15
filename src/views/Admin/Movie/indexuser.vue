@@ -8,14 +8,13 @@
 
 
 <script>
-import AdminLayout from '@/Layouts/AdminLayout.vue'
-import movieindexuser from "@/views/indexuser-movie.vue"
-export default {
-    name: 'indexusermovie',
-    components:{
-        AdminLayout,
-        movieindexuser,
+    import AdminLayout from '@/Layouts/AdminLayout.vue'
+    import movieindexuser from "@/views/indexuser-movie.vue"
+    export default {
+        name: 'indexusermovie',
+        components:{
+            AdminLayout,
+            movieindexuser,
+        }
     }
-
-}
 </script>

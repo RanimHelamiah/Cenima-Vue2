@@ -5,21 +5,65 @@ export const auth ={
     state: {
       userauth:localStorage.getItem('user_info'),
       token: localStorage.getItem('access_token') || null,
-      signedin:localStorage.getItem('access_token')?true:false
+      isAdmin: localStorage.getItem('isAdmin')=="true"? true : false,
+      isVendor: localStorage.getItem('isVendor')=="true"? true : false,
+      isReception: localStorage.getItem('isReception')=="true"? true : false,
+      isDistributer: localStorage.getItem('isDistributer')=="true"? true : false,
+      isUser: localStorage.getItem('isUser')=="true"? true : false,
+      signedin:localStorage.getItem('access_token')||false,
     },
     getters: {
       loggedIn(state) {
         return state.token  !== null;
       },
       getuser: state=>state.userauth,
+      isAdmin: state=>state.isAdmin,
+      isVendor: state=>state.isVendor,
+      isReception: state=>state.isReception,
+      isDistributer: state=>state.isDistributer,
+      isUser: state=>state.isUser,
       gettoken: state => state.token,
     },
     mutations: {
       retrieveToken(state, userdata) {
-         state.signedin=true;
-         state.token = userdata.token.token;
-         state.userauth = userdata.user.original.data;
+        let userroles = userdata.user.original.data.roles;
+        let roles = userroles.map(role => role.name);
+
+        let is_Admin = roles.find(role => role == 'Admin'); 
+        let is_Vendor = roles.find(role => role == 'Vendor'); 
+        let is_Reception = roles.find(role => role == 'Reception'); 
+        let is_Distributer = roles.find(role => role == 'Distributor'); 
+        let is_User = roles.find(role => role == 'User'); 
+        if(is_Admin === 'Admin'){
+          localStorage.setItem('isAdmin', true)
+        }else{
+          localStorage.setItem('isAdmin', false)
+        }
+        if(is_Vendor === 'Vendor'){
+          localStorage.setItem('isVendor', true)
+        }else{
+          localStorage.setItem('isVendor', false)
+        }
+        if(is_Reception === 'Reception'){
+          localStorage.setItem('isReception', true)
+        }else{
+          localStorage.setItem('isReception', false)
+        }
+        if(is_Distributer === 'Distributor'){
+          localStorage.setItem('isDistributer', true)
+        }else{
+          localStorage.setItem('isDistributer', false)
+        }
+        if(is_User === 'User'){
+          localStorage.setItem('isUser', true)
+        }else{
+          localStorage.setItem('isUser', false)
+        }
+        state.signedin=true;
+        state.token = userdata.token.token;
+        state.userauth = userdata.user.original.data;
       },
+
       destroyToken(state) {
         state.token = null
         state.signedin=false
@@ -41,7 +85,6 @@ export const auth ={
                 localStorage.setItem('user_info', userauth)
                context.commit('retrieveToken', response.data.data)
                resolve(response.data.data)
-              //  context.commit('retrieveToken', response)
             })
             .catch(error => {
               //console.log(error)
