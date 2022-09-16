@@ -9,7 +9,7 @@
         <div class="mb-12">
           <span clspanss="block h-32 w-32 ">
               <img 
-              src="https://images.unsplash.com/photo-1517841905240-472988babdf9?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTJ8fHByb2ZpbGUlMjBwaWN0dXJlfGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=500&q=60"
+              :src="`http://127.0.0.1:8000/${userinfo.id_img}`" 
               class="ml-20 mx-auto object-cover rounded-full bg-purple-200 p-1" 
               style="width:24rem;height:24rem;"/>
           </span>

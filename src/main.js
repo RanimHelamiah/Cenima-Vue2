@@ -14,6 +14,7 @@ import "./assets/animate.css";
 import "./assets/sass/css/windzo.css";
 
 
+
 const app = createApp(Master);
 app.use(router, Icon);
 app.use(VueApexCharts);

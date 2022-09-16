@@ -72,7 +72,7 @@
             </button>
         </router-link>
       </div>
-      <div class="mr-8 flex" v-if="this.isAdmin || this.isReception || this.Vendor || this.isDistributer">
+      <div class="mr-8 flex" v-if="this.isAdmin || this.isReception || this.isVendor || this.isDistributer">
         <router-link to="/" >
             <button class="text-purple-900 dark:text-purple-100 rounded-lg p-1 pl-4 pr-4 
             hover:bg-violet-400 dark:hover:bg-violet-400" >

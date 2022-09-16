@@ -22,13 +22,20 @@
                             </p>
                         </div>
                         <div class="flex justify-between mt-8">
-                            <router-link :to="{name : 'stepone' ,params:{movieid: movieid}}">
+                            <router-link :to="{name : 'stepone' ,params:{movieid: movieid}}" v-if="isUser">
                                 <button class="p-1 rounded-md hover:bg-purple-500 bg-rose-700 font-bold" 
                                 style="width:250px; margin-top:30px; padding:10px; color:whitesmoke; margin-right:100px;font-size:25px;">
                                     Buy Ticket
                                 </button>
                             </router-link>
-                            <router-link :to="{name: 'movieindex'}">
+                            <router-link :to="{name: 'movieindex'}" v-if="isAdmin || isReception">
+                                <button class="p-1 rounded-md hover:bg-purple-500 bg-violet-700" 
+                                style="width:150px; margin-top:30px; padding:10px; color:whitesmoke; margin-right:80px;">
+                                    <i class="fa fa-chevron-left" fa-2x aria-hidden="true"></i>
+                                    Back..
+                                </button>
+                            </router-link>
+                            <router-link to="/movie" v-if="isUser">
                                 <button class="p-1 rounded-md hover:bg-purple-500 bg-violet-700" 
                                 style="width:150px; margin-top:30px; padding:10px; color:whitesmoke; margin-right:80px;">
                                     <i class="fa fa-chevron-left" fa-2x aria-hidden="true"></i>
@@ -62,11 +69,14 @@
         created() {
             this.show(this.movieid)
         },
-        computed:mapGetters('movie', {
-            showmovie: "showmovie",
-            allhalls: "allhalls",
-            allgenres: "allgenres",
-            alltimes: "alltimes",
+        computed:{
+            ...mapGetters('movie', {
+                showmovie: "showmovie",
+                allhalls: "allhalls",
+                allgenres: "allgenres",
+                alltimes: "alltimes",
         }),
+        ...mapGetters('auth',["isReception", "isAdmin","isUser"])
+    },
     }
 </script>

@@ -1,5 +1,5 @@
 <template>
-  <AdminLayout>
+  <AdminLayout>{{message}}
     <div class="overflow-x-auto" >
         <div class="flex m-4 justify-center lg:flex md:flex">
            <createtime />
@@ -85,7 +85,7 @@
         createtime,
         AdminLayout,
     },
-    computed:mapGetters('time', {alltimes: "alltimes"}),
+    computed:mapGetters('time', ["alltimes","message"]),
     methods:{
         ...mapActions('time',['index','deactivate','activate']),
         deactivated(time){
