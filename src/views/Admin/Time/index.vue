@@ -1,5 +1,5 @@
 <template>
-  <AdminLayout>{{message}}
+  <AdminLayout>{{this.message}}
     <div class="overflow-x-auto" >
         <div class="flex m-4 justify-center lg:flex md:flex">
            <createtime />
@@ -51,13 +51,13 @@
                                         </router-link>
                                         <button :key="time.id"
                                             v-if="time.active==1"
-                                            @click="deactivated(time)"  class="text-xs text-white bg-sky-600 rounded-full w-6 mr-2 transform
+                                            @click="deac(time)"  class="text-xs text-white bg-sky-600 rounded-full w-6 mr-2 transform
                                              hover:text-purple-300 hover:scale-110">
                                              A
                                         </button>
                                          <button 
                                             v-else-if="time.active==0"
-                                            @click="activated(time)"  class="text-xs text-white bg-orange-600 rounded-full w-6 mr-2 transform
+                                            @click="act(time)"  class="text-xs text-white bg-orange-600 rounded-full w-6 mr-2 transform
                                              hover:text-purple-300 hover:scale-110">
                                              DA
                                         </button>
@@ -88,14 +88,14 @@
     computed:mapGetters('time', ["alltimes","message"]),
     methods:{
         ...mapActions('time',['index','deactivate','activate']),
-        deactivated(time){
-        this.deactivate(time)
-        this.$router.push({ name: 'timeindex'})
+        deac(time){
+            this.deactivate(time)
+            this.$router.push({ name: 'timeindex'})
         },
-        activated(time){
-        this.activate(time)
-        this.$router.push({ name: 'timeindex'})
-        },
+        act(time){
+            this.activate(time)
+            this.$router.push({ name: 'timeindex'})
+            },
     },
     created() {
         this.index()

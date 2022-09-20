@@ -8,21 +8,17 @@ export const time ={
     state: {
         times:[],
         time:Object,
-        message:Object,
-        signedin:localStorage.getItem('access_token')?true:false
+        signedin:localStorage.getItem('access_token')?true:false,
       },
 
       getters: {
         alltimes: state => state.times,
         edittime: state => state.time,
-        message: state=>state.time.message,
-        
       },
 
     mutations: {
           index : (state, times) => {
             state.times = times
-            state=>state.time.message;
           },
           store : (state, time) => state.times.push(time),
           edit: (state, time) => {
@@ -35,8 +31,6 @@ export const time ={
               }        
           },
           deactivate:(state, time) => {
-            console.log(time.message)
-            console.log(time)
             const index = state.times.findIndex(t => t.id === time.id);
             if(index !== -1) {
                 state.times.splice(index, 1, time);
@@ -78,14 +72,11 @@ export const time ={
           },
           async activate( context, time) {
             const response = await axios.get('/Time/activate/'+time.id);
-               console.log(response.data.message);
-              context.commit('activate', response.data);
-            console.log(response.data);
+               context.commit('activate', response.data);
          },
           async deactivate( context, time) {
             const response = await axios.get('/Time/deactivate/'+time.id);
             context.commit('deactivate', response.data);
-            console.log(response.data.data);
          },
          
     },

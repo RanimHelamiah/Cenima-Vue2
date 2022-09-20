@@ -174,16 +174,11 @@
                 'role': this.role,
             }
             this.grant(ga)
-            .then(response => {
+            this.$router.push({ name: 'indexuser' })
             this.user_id=""
             this.role=""
-            this.$router.push({ name: 'indexuser' })
             this.successMessage="user Granted Successfully!"
-            })
-            .catch(error => {
-                console.log(error)
 
-            })
         },
         re(){
             const ra= {
@@ -191,41 +186,21 @@
                 'role': this.role,
             }
             this.revoke(ra)
-            .then(response => {
+            this.$router.push({ name: 'indexuser' })
             this.user_id=""
             this.role=""
-            this.$router.push({ name: 'indexuser' })
             this.successMessage="user Revoked Successfully!"
-            })
-            .catch(error => {
-                console.log(error)
-
-            })
         },
       
         deactivated(user){
-            //console.log(id)
             this.deactivate(user)
-            .then(response => {
-                this.$router.push({ name: 'indexuser' })
                 this.successMessage="user Dectivated Successfully!"
-            })
-            .catch(error => {
-                console.log(error)
-    
-            })
+                this.$router.push({ name: 'indexuser' })
         },
         activated(user){
-            //console.log(user)
             this.activate(user)
-            .then(response => {
                 this.$router.push({ name: 'indexuser' })
                 this.successMessage="user Activated Successfully!"
-            })
-            .catch(error => {
-                console.log(error)
-    
-            })
         },
       
      },
